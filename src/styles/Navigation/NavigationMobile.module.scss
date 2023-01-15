@@ -1,0 +1,54 @@
+@import '../../../colors/paleta.scss';
+
+.navigationContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.navigation {
+	position: sticky;
+	display: flex;
+	width: 100%;
+	background-color: $color-black;
+	transition: 0.4s all;
+	border-radius: 0 0 1.5rem 1.5rem;
+	z-index: 9;
+}
+
+.navigation_ul {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	list-style: none;
+}
+
+.navigation_ul_li {
+	margin: 1rem;
+	text-transform: uppercase;
+	font-size: 2.5rem;
+	font-family: 'BioRhyme', serif;
+	font-weight: 700;
+}
+
+.navigation_ul_li a {
+	text-decoration: none;
+	color: #4bc4a6;
+}
+
+.barMenu {
+	position: absolute;
+	font-size: 4rem;
+	margin: 1rem;
+	color: #4bc4a6;
+	z-index: 10;
+}
+
+.openMenu {
+	opacity: 1;
+}
+
+.closeMenu {
+	opacity: 0;
+}

@@ -1,0 +1,25 @@
+.navigation {
+	position: sticky;
+	display: flex;
+	width: 100%;
+	background-color: aqua;
+	z-index: 10;
+}
+
+.navigation_ul {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	list-style: none;
+}
+
+.navigation_ul_li {
+	font-size: 2.5rem;
+	font-family: 'BioRhyme', serif;
+	font-weight: 700;
+}
+
+.navigation_ul_li a {
+	text-decoration: none;
+}
