@@ -5,7 +5,7 @@ import Home from './HomePage'
 import Favorites from './FavoritesPage'
 import GiftCard from './GiftCartPage'
 import UserLogin from '../UserInteraction/UserLogin'
-import UserRegistration from '../UserInteraction/UserRegistration'
+import Registration from '../../Account/Registration'
 
 const MainPage = () => {
 	return (
@@ -14,7 +14,7 @@ const MainPage = () => {
 			<Route path="/favorites" element={<Favorites />}></Route>
 			<Route path="/gift" element={<GiftCard />}></Route>
 			<Route path="/login" element={<UserLogin />}></Route>
-			<Route path="/register" element={<UserRegistration />}></Route>
+			<Route path="/register" element={<Registration />}></Route>
 		</Routes>
 	)
 }

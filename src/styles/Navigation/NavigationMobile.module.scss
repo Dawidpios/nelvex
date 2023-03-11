@@ -1,32 +1,27 @@
-@import '../../../colors/paleta.scss';
-
-.navigationContainer {
-	width: 100%;
-	display: flex;
-	flex-direction: row-reverse;
-}
+@import '../variables/colors.scss';
 
 .navigation {
-	position: sticky;
+	position: fixed;
 	display: flex;
+	justify-content: end;
 	width: 100%;
-	background-color: $color-black;
-	transition: 0.4s all;
-	border-radius: 0 0 1.5rem 1.5rem;
-	z-index: 9;
 }
 
 .navigation_ul {
-	width: 100%;
+	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	align-items: start;
 	list-style: none;
+	background-color: $color-white;
+	padding: .5rem;
+	border-bottom: 1px solid $color-brown;
+	border-left: 1px solid $color-brown;
+	border-radius: 0 0 0 15px;
 }
 
 .navigation_ul_li {
-	margin: 1rem;
-	text-transform: uppercase;
 	font-size: 2.5rem;
 	font-family: 'BioRhyme', serif;
 	font-weight: 700;
@@ -34,14 +29,20 @@
 
 .navigation_ul_li a {
 	text-decoration: none;
-	color: #4bc4a6;
+	color: $color-green;
+	cursor: pointer;
+	&:hover {
+		color: $color-green;
+	}
 }
 
 .barMenu {
 	position: absolute;
+	right: 0;
+	top: 0;
 	font-size: 4rem;
 	margin: 1rem;
-	color: #4bc4a6;
+	color: $color-green;
 	z-index: 10;
 }
 

@@ -1,23 +1,23 @@
 import React from 'react'
-import style from '../../styles/Input.module.css'
 
-type Input = {
+type inputType = {
 	type: string
-	value: string
 	placeholder: string
-	onChange: () => {}
 	className: string
+	onChange: () => void
 }
 
-const Input = ({ type, value, placeholder, onChange, className }: Input) => {
+const Input = React.forwardRef<HTMLInputElement, inputType>(({type, placeholder, className, onChange}, ref) => {
+
 	return (
 		<input
+			ref={ref}
 			type={type}
-			value={value}
 			placeholder={placeholder}
+			className={className}
 			onChange={onChange}
-			className={style.className}></input>
+			></input>
 	)
-}
+});
 
 export default Input

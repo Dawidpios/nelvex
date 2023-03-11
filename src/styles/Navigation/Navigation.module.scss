@@ -1,8 +1,10 @@
+@import '../variables/colors.scss';
+
 .navigation {
 	position: sticky;
 	display: flex;
 	width: 100%;
-	background-color: aqua;
+	background-color: $color-grey;
 	z-index: 10;
 }
 
@@ -22,4 +24,9 @@
 
 .navigation_ul_li a {
 	text-decoration: none;
+	color: $color-orange;
+	cursor: pointer;
+	&:hover {
+		color: $color-orange;
+	}
 }

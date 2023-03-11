@@ -1,15 +1,13 @@
-import React from 'react'
-import style from '../../styles/Button.module.css'
 
-type Button = {
+type ButtonType = {
 	className: string
 	onClick: () => {}
 	text: string
 }
 
-const Button = ({ className, onClick, text }: Button) => {
+const Button = ({ className, onClick, text }: ButtonType) => {
 	return (
-		<button className={style.className} onClick={onClick}>
+		<button className={className} onClick={onClick}>
 			{text}
 		</button>
 	)

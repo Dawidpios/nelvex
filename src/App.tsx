@@ -18,7 +18,7 @@ function App() {
 				{isMobileOrDesktop ? (
 					<NavigationMobile></NavigationMobile>
 				) : (
-					<Navigation></Navigation>
+				<Navigation></Navigation>
 				)}
 				<MainPage></MainPage>
 				<Footer></Footer>
