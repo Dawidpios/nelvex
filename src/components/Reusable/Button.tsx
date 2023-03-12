@@ -1,7 +1,7 @@
 
 type ButtonType = {
 	className: string
-	onClick: () => {}
+	onClick: () => void
 	text: string
 }
 

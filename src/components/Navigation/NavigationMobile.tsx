@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 
 import style from "../../styles/Navigation/NavigationMobile.module.scss";
@@ -7,21 +6,20 @@ import { CgMenuRound, CgCloseO } from "react-icons/cg";
 
 const NavigationMobile = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const portalID = document.getElementById("root") as HTMLElement;
   const openMenuHandler = () => {
     setOpenMenu((prevState) => !prevState);
   };
 
   return (
-    <div className={style.naviContainer}>
+    <div>
       {openMenu ? (
         <CgCloseO
-          className={style.barMenu}
+          className={style.barMenuClose}
           onClick={openMenuHandler}
         ></CgCloseO>
       ) : (
         <CgMenuRound
-          className={style.barMenu}
+          className={style.barMenuOpen}
           onClick={openMenuHandler}
         ></CgMenuRound>
       )}

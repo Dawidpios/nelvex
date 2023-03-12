@@ -1,55 +1,87 @@
-@import '../variables/colors.scss';
+@import "../variables/colors.scss";
+@import "../variables/fonts.scss";
 
 .navigation {
-	position: fixed;
-	display: flex;
-	justify-content: end;
-	width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: end;
+  width: 100%;
 }
 
 .navigation_ul {
-	width: 50%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: start;
-	list-style: none;
-	background-color: $color-white;
-	padding: .5rem;
-	border-bottom: 1px solid $color-brown;
-	border-left: 1px solid $color-brown;
-	border-radius: 0 0 0 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
+  list-style: none;
+  background-color: $color-grey-light;
+  padding: 0.5rem;
+  border-bottom: 1px solid $color-green-dark;
+  border-left: 1px solid $color-green-dark;
+  border-radius: 0 0 0 15px;
 }
 
 .navigation_ul_li {
-	font-size: 2.5rem;
-	font-family: 'BioRhyme', serif;
-	font-weight: 700;
+  font-size: 2.5rem;
+  font-family: $default-font;
+  font-weight: 700;
 }
 
 .navigation_ul_li a {
-	text-decoration: none;
-	color: $color-green;
-	cursor: pointer;
-	&:hover {
-		color: $color-green;
-	}
+  text-decoration: none;
+  color: $color-purple;
+  cursor: pointer;
 }
 
-.barMenu {
-	position: absolute;
-	right: 0;
-	top: 0;
-	font-size: 4rem;
-	margin: 1rem;
-	color: $color-green;
-	z-index: 10;
+.barMenuOpen {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 4rem;
+  margin: 1rem;
+  color: $color-green-light;
+  z-index: 10;
+}
+
+.barMenuClose {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 4rem;
+  margin: 1rem;
+  color: $color-purple;
+  z-index: 10;
 }
 
 .openMenu {
-	opacity: 1;
+  animation: openMenu 0.4s forwards;
 }
 
 .closeMenu {
-	opacity: 0;
+  animation: closeMenu 0.4s forwards;
+}
+
+@keyframes openMenu {
+  0% {
+    opacity: 0;
+    right: -100%;
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+    display: flex;
+  }
+}
+
+@keyframes closeMenu {
+  0% {
+    opacity: 1;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    right: -100%;
+    display: none;
+  }
 }

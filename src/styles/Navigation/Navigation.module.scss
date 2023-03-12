@@ -1,32 +1,33 @@
-@import '../variables/colors.scss';
+@import "../variables/colors.scss";
+@import "../variables/fonts.scss";
 
 .navigation {
-	position: sticky;
-	display: flex;
-	width: 100%;
-	background-color: $color-grey;
-	z-index: 10;
+  position: sticky;
+  display: flex;
+  width: 100%;
+  background-color: $color-white;
+  z-index: 10;
 }
 
 .navigation_ul {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
 }
 
 .navigation_ul_li {
-	font-size: 2.5rem;
-	font-family: 'BioRhyme', serif;
-	font-weight: 700;
+  font-size: 2.5rem;
+  font-family: $default-font;
+  font-weight: 700;
 }
 
 .navigation_ul_li a {
-	text-decoration: none;
-	color: $color-orange;
-	cursor: pointer;
-	&:hover {
-		color: $color-orange;
-	}
+  text-decoration: none;
+  color: $color-purple;
+  cursor: pointer;
+  &:hover {
+    color: $color-purple;
+  }
 }
