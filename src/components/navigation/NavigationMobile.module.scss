@@ -1,0 +1,50 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/colors.scss';
+
+.navigation {
+  position: fixed;
+  top: -30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: .4s ease-out;
+}
+
+.icon {
+  font-size: 3rem;
+  transition: .4s ease-out;
+  color: $color-blue;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.reverseIcon {
+  transition: .4s ease-out;
+  transform: rotate(180deg);
+}
+
+.navigation_ul {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+}
+
+.openMenu {
+  transition: .4s ease-out;
+  top: 0;
+}
+
+.navigation_link {
+  font-family: $default-font;
+  font-size: 1.4rem;
+  padding: 1rem;
+  a {
+    color: $color-blue;
+    text-decoration: none;
+  }
+}
