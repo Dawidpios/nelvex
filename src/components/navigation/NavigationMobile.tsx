@@ -11,6 +11,7 @@ const NavigationMobile = () => {
   };
 
   return (
+    <>
     <div className={`${styles.navigation} ${openMenu && styles.openMenu}`}>
       <ul className={`${styles.navigation_ul}`}>
         <li className={styles.navigation_link}>
@@ -26,11 +27,12 @@ const NavigationMobile = () => {
           <Link href={`/register`}>Register</Link>
         </li>
       </ul>
-      <MdKeyboardDoubleArrowDown
+    </div>
+    <MdKeyboardDoubleArrowDown
         onClick={handleOpenMenu}
         className={`${styles.icon} ${openMenu && styles.reverseIcon}`}
       />
-    </div>
+    </>
   );
 };
 
