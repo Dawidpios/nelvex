@@ -1,4 +1,7 @@
+'use client'
+import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from "react-hook-form";
+import toast, {Toaster} from 'react-hot-toast';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import style from "./Register.module.scss";
@@ -14,6 +17,7 @@ type RegisterValue = {
 };
 
 const Register = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -21,9 +25,23 @@ const Register = () => {
     formState: { errors },
   } = useForm<RegisterValue>();
 
-  const onSubmit: SubmitHandler<RegisterValue> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<RegisterValue> = async (data) => {
+    fetch('/api/register', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(async (res) => {
+      const {message} = await res.json()
+      if(res.status === 200) {
+        toast.success(message)
+        router.push('/')
+      } else {
+        toast.error(message)
+      }
+    }).catch(error => { throw new Error(error) })
+  };
 
   return (
+    <>
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
       <TextField
         className={style.form_textField}
@@ -92,6 +110,8 @@ const Register = () => {
         Register
       </Button>
     </form>
+    <Toaster />
+    </>
   );
 };
 

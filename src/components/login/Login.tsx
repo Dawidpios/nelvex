@@ -1,3 +1,4 @@
+'use client'
 import { useForm, SubmitHandler } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -16,7 +17,12 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginValue>();
 
-  const onSubmit: SubmitHandler<LoginValue> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginValue> = (data) => {
+    fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+  };
 
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
