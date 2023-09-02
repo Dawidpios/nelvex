@@ -1,8 +1,6 @@
-"use client";
 import { Poppins } from "next/font/google";
-import useBreakpoint from "use-breakpoint";
-import Navigation from "@/components/navigation/Navigation";
-import NavigationMobile from "@/components/navigation/NavigationMobile";
+import Navigation from "@/components/navigation/Navigation"
+import ThemeProvider  from './Context/store';
 import "./globals.css";
 
 export const metadata = {
@@ -18,24 +16,18 @@ type DashboardLayoutProps = {
   children: React.ReactNode;
 };
 
-const BREAKPOINTS = { mobile: 0, desktop: 678 };
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { breakpoint } = useBreakpoint(BREAKPOINTS, "mobile");
 
   return (
     <html lang="en">
       <body>
-        {breakpoint === "mobile" ? (
-          <NavigationMobile></NavigationMobile>
-        ) : (
-          <Navigation />
-        )}
-        {children}
+        <Navigation></Navigation>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

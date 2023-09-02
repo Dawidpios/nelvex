@@ -21,7 +21,6 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<RegisterValue>();
 
@@ -33,7 +32,9 @@ const Register = () => {
       const {message} = await res.json()
       if(res.status === 200) {
         toast.success(message)
-        router.push('/')
+        setTimeout(() => {
+          router.push('/')
+        }, 1500)
       } else {
         toast.error(message)
       }
