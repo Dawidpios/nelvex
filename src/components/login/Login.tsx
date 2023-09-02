@@ -6,6 +6,7 @@ import toast, {Toaster} from 'react-hot-toast';
 import Button from "@mui/material/Button";
 import style from './Login.module.scss'
 import { useGlobalContext } from '../../../app/Context/store';
+import { useEffect } from 'react';
 
 
 type LoginValue = {
@@ -20,7 +21,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginValue>();
-  const { setIsLogged } = useGlobalContext()
+  const { setIsLogged, isLogged } = useGlobalContext()
   
   const onSubmit: SubmitHandler<LoginValue> = (data) => {
     fetch('/api/login', {
@@ -32,13 +33,17 @@ const Login = () => {
         toast.success(message)
         sessionStorage.setItem(`Logged`, `${data.login}`)
         setIsLogged(true)
-        
+        setTimeout(() => {
+          router.push('/')
+        },1000)
       } else {
         toast.error(message)
       }
     })
   };
-
+  useEffect(() => {
+    console.log(isLogged)
+  }, [isLogged])
   return (
     <>
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
