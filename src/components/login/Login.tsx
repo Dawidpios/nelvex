@@ -1,69 +1,58 @@
 'use client'
+
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from "react-hook-form";
-import TextField from "@mui/material/TextField";
 import toast, {Toaster} from 'react-hot-toast';
-import Button from "@mui/material/Button";
 import style from './Login.module.scss'
-import { useGlobalContext } from '../../../app/Context/store';
-import { useEffect } from 'react';
-
+import { signIn} from 'next-auth/react'
 
 type LoginValue = {
-  login: string;
+  email: string;
   password: string;
 };
 
 const Login = () => {
+
   const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginValue>();
-  const { setIsLogged, isLogged } = useGlobalContext()
   
-  const onSubmit: SubmitHandler<LoginValue> = (data) => {
-    fetch('/api/login', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    }).then(async (res) => {
-      const {message} = await res.json()
-      if(res.status === 200) {
-        toast.success(message)
-        sessionStorage.setItem(`Logged`, `${data.login}`)
-        setIsLogged(true)
-        setTimeout(() => {
-          router.push('/')
-        },1000)
-      } else {
-        toast.error(message)
-      }
+
+  const onSubmit: SubmitHandler<LoginValue> = async (data) => {
+    const loginStatus = await signIn("credentials", {
+     ...data,
+     redirect: false
     })
+    if(loginStatus?.error) {
+      toast.error(loginStatus.error)
+    }
+    router.push('/')
   };
-  useEffect(() => {
-    console.log(isLogged)
-  }, [isLogged])
+
   return (
     <>
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-      <TextField
+      <input
+      type='email'
+      placeholder='User email'
       className={style.form_textField}
-        label="User login"
-        {...register("login", { required: true, minLength: 5, maxLength: 35 })}
+        {...register("email", { required: true, minLength: 5, maxLength: 35 })}
       />
-      {errors.login && <span>{errors.login?.message}</span>}
+      {errors.email && <span>{errors.email?.message}</span>}
 
-      <TextField
+      <input
+      placeholder='Password'
       className={style.form_textField}
-        label="Password"
         {...register("password", { required: true, minLength: 8 })}
       />
       {errors.password && <span>{errors.password?.message}</span>}
 
-      <Button className={style.form_button} variant="outlined" type="submit">
+      <button className={style.form_button} type="submit">
         Login
-      </Button>
+      </button>
     </form>
     <Toaster/>
     </>

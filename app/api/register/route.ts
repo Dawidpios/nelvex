@@ -23,7 +23,15 @@ export async function POST(req: NextRequest, res:NextResponse) {
       })
     }
     const hashedPassword = await bcrypt.hash(password, 12)
-    db.collection('users').insertOne({ login, password: hashedPassword, email, name, surname })
+    await db.collection('users').insertOne({ login, password: hashedPassword, email, name, surname })
+    const registeredUser = await db.collection('users').findOne({
+      $or: [
+        { login: login },
+        { email: email }
+      ]
+    })
+    await db.collection('users').updateOne({ email: registeredUser?.email }, {$set: { id: registeredUser?._id.toString() }})
+    db.close()
   }
   
   return NextResponse.json({message: "User has been registered."}, {

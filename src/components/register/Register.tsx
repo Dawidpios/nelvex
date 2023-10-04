@@ -44,9 +44,9 @@ const Register = () => {
   return (
     <>
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-      <TextField
+      <input
+        placeholder='Login'
         className={style.form_textField}
-        label="User login"
         {...register("login", {
           required: { value: true, message: "User login is required" },
           minLength: { value: 5, message: "User login is too short" },
@@ -56,9 +56,9 @@ const Register = () => {
       {errors.login && (
         <span className={style.form_errorMessage}>{errors.login.message}</span>
       )}
-      <TextField
+      <input
+        placeholder='Name'
         className={style.form_textField}
-        label="User name"
         {...register("name", {
           required: { value: true, message: "User name is required" },
           minLength: { value: 3, message: "User name is too short" },
@@ -68,9 +68,9 @@ const Register = () => {
       {errors.name && (
         <span className={style.form_errorMessage}>{errors.name.message}</span>
       )}
-      <TextField
+      <input
+        placeholder='Surname'
         className={style.form_textField}
-        label="User surname"
         {...register("surname", {
           required: { value: true, message: "User surname is required" },
           minLength: { value: 3, message: "User surname is too short" },
@@ -82,9 +82,9 @@ const Register = () => {
           {errors.surname.message}
         </span>
       )}
-      <TextField
+      <input
+        placeholder='E-mail'
         className={style.form_textField}
-        label="Email"
         type="email"
         {...register("email", {
           required: { value: true, message: "User email is required" },
@@ -94,9 +94,9 @@ const Register = () => {
       {errors.email && (
         <span className={style.form_errorMessage}>{errors.email.message}</span>
       )}
-      <TextField
+      <input
+        placeholder='Password'
         className={style.form_textField}
-        label="Password"
         {...register("password", {
           required: { value: true, message: "User password is required" },
           minLength: { value: 8, message: "User password is too short" },
@@ -107,9 +107,9 @@ const Register = () => {
           {errors.password.message}
         </span>
       )}
-      <Button className={style.form_button} variant="outlined" type="submit">
+      <button className={style.form_button} type="submit">
         Register
-      </Button>
+      </button>
     </form>
     <Toaster />
     </>

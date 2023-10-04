@@ -1,7 +1,8 @@
 import { Poppins } from "next/font/google";
 import Navigation from "@/components/navigation/Navigation"
-import ThemeProvider  from './Context/store';
+import ContextProvider  from './Context/store';
 import "./globals.css";
+import Session from "./Context/session";
 
 export const metadata = {
   title: "Nelvex",
@@ -12,11 +13,6 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-type DashboardLayoutProps = {
-  children: React.ReactNode;
-};
-
-
 export default function RootLayout({
   children,
 }: {
@@ -25,12 +21,14 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
-      <ThemeProvider>
+      <Session>
+      <ContextProvider>
+        <body className={poppins.className}>
         <Navigation></Navigation>
-        {children}
-        </ThemeProvider>
-      </body>
+          {children}
+        </body>
+        </ContextProvider>
+        </Session>
     </html>
   );
 }

@@ -5,6 +5,7 @@ import {
   createContext,
 } from "react";
 
+
 type Global = {
   isLogged: boolean;
   setIsLogged: (isLogged: boolean) => void;
@@ -12,7 +13,7 @@ type Global = {
 
 export const GlobalContext = createContext<Global | null>(null);
 
-export default function ThemeProvider({ children }: any) {
+export default function ContextProvider({ children }: any) {
   const [isLogged, setIsLogged] = useState(false);
   return (
     <GlobalContext.Provider value={{ isLogged, setIsLogged }}>
