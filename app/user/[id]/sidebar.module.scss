@@ -1,0 +1,19 @@
+@import '../../../src/styles/fonts.scss';
+@import '../../../src/styles/colors.scss';
+
+.listContainer {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  list-style: none;
+  gap:1rem;
+}
+.listElement {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 700;
+  font-family: $default-font;
+  color: $color-blue;
+}

@@ -3,14 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
+import { useSession, signOut } from "next-auth/react";
 import styles from "./NavigationMobile.module.scss";
 
 const NavigationMobile = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const { data: session } = useSession();
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
+
+  const logOutHandler = () => {
+    signOut();
+  };
+  
+  const isLogged = session && session.user;
 
   return (
     <>
@@ -22,12 +30,25 @@ const NavigationMobile = () => {
         <li className={styles.navigation_link}>
           <Link href={`/promotions`}>Promotions</Link>
         </li>
-        <li className={styles.navigation_link}>
-          <Link href={`/login`}>Login</Link>
+        {!isLogged ? (
+        <>
+          <li className={styles.navigation_link}>
+            <Link href={`/register`}>Register</Link>
+          </li>
+          <li className={styles.navigation_link}>
+            <Link href={`/login`}>Login</Link>
+          </li>
+        </>
+      ) : (
+        <li className={styles.navigation_link_userPanel}>
+            <Link href={`/user/${session?.user?.id}`}>
+              {session?.user?.name}
+            </Link>
+            <Link href={`/`} onClick={logOutHandler}>
+              Log out
+            </Link>
         </li>
-        <li className={styles.navigation_link}>
-          <Link href={`/register`}>Register</Link>
-        </li>
+      )}
       </ul>
     </div>
     <MdKeyboardDoubleArrowDown

@@ -18,3 +18,10 @@
     color: $color-blue;
   }
 }
+
+.navigation_link_userPanel {
+  composes:navigation_link;
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+}

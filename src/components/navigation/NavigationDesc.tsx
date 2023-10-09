@@ -29,13 +29,13 @@ const NavigationDesc = () => {
           </li>
         </>
       ) : (
-        <li className={styles.navigation_link}>
-          <Link href={`/user/${session?.user?.id}`}>
-            {session?.user?.name}
-          </Link>
-          <Link href={`/`} onClick={logOutHandler}>
-            Log out
-          </Link>
+        <li className={styles.navigation_link_userPanel}>
+            <Link href={`/user/${session?.user?.id}`}>
+              {session?.user?.name}
+            </Link>
+            <Link href={`/`} onClick={logOutHandler}>
+              Log out
+            </Link>
         </li>
       )}
     </ul>

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "../../../utilities/connectDB/connectDB";
+import { connectDB } from "../../utilities/connectDB/connectDB";
 import { NextRequest } from "next/server";
 
 export async function POST(req:NextRequest, res:NextResponse) {

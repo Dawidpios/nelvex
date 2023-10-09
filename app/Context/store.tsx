@@ -7,16 +7,16 @@ import {
 
 
 type Global = {
-  isLogged: boolean;
-  setIsLogged: (isLogged: boolean) => void;
+  userPlayground: string;
+  setUserPlayground: (userPlayground: string) => void;
 };
 
 export const GlobalContext = createContext<Global | null>(null);
 
 export default function ContextProvider({ children }: any) {
-  const [isLogged, setIsLogged] = useState(false);
+  const [userPlayground, setUserPlayground] = useState('profile');
   return (
-    <GlobalContext.Provider value={{ isLogged, setIsLogged }}>
+    <GlobalContext.Provider value={{ userPlayground, setUserPlayground }}>
       {children}
     </GlobalContext.Provider>
   );
