@@ -2,8 +2,6 @@
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast, {Toaster} from 'react-hot-toast';
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import style from "./Register.module.scss";
 
 type RegisterValue = {

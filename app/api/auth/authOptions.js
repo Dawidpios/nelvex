@@ -6,6 +6,8 @@ import { verifyPassword } from "../../utilities/passwordManage/passwordManage";
 export const authOptions = {
   session: {
     strategy: "jwt",
+    updateAge: 10,
+    maxAge: 600
   },
   providers: [
     CredentialsProvider({
@@ -31,7 +33,13 @@ export const authOptions = {
     signIn: "/login",
   },
   callbacks: {
-    async session({session, token}) {
+    async jwt({token, user, trigger, session}) {
+      if(trigger === 'update') {
+        return {...token, ...session.user}
+      }
+      return {...token, ...user}
+    },
+    async session({session, token, trigger}) {
       session.user.id = token.sub
       return session
     }

@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import style from './profile.module.scss'
+import Avatar from "./Avatar";
+import PasswordChange from "./PasswordChange";
 
 async function getUser(id: string) {
   const req = await fetch('http://localhost:3000/api/getUser', { method: 'POST', body: JSON.stringify(id)})
@@ -12,10 +14,11 @@ async function getUser(id: string) {
   return user
 }
 
-const Profile = async ({ params }: { params: { id: string } }) => {
+const Profile = async ({ params, searchParams }: { params: { id: string }, searchParams: Record<string, string> }) => {
   const userReq = await getUser(params.id)
   const { login, name, surname, email, currency} = userReq
 
+  const handler = () => {}
   return ( 
     <section className={style.userProfile}>
       <h1 className={style.header}>{login}</h1>
@@ -31,8 +34,8 @@ const Profile = async ({ params }: { params: { id: string } }) => {
       </div>
       <div className={style.controlPanel}>
         <h3 className={style.smallHeader}>Control panel</h3>
-        <button className={style.button}>Pick avatar</button>
-        <button className={style.button}>Change password</button>
+        <Avatar></Avatar>
+        <PasswordChange />
       </div>
     </section>
    );

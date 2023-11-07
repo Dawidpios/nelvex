@@ -1,9 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  env: {
+    FILESTACK_API: process.env.FILESTACK_API
+  },
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true
+  },
+  images: {
+    domains: ['https://cdn.filestackcontent.com/*'],
   },
   async headers() {
     return [
