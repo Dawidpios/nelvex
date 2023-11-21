@@ -18,7 +18,8 @@ const Avatar = () => {
   const userAvatarUpdate = async (id : string, image : string) => {
     const res = await fetch('/api/updateUser', {
       method:"POST",
-      body: JSON.stringify({id, image})
+      body: JSON.stringify({id, image}),
+      cache: 'no-store'
     })
     const user = await res.json()
     await update({
@@ -38,7 +39,7 @@ const Avatar = () => {
             fromSources: ["local_file_system", "url"],
             onUploadDone: (data) => {userAvatarUpdate(id as string, data.filesUploaded[0].url)},
             onClose: () => handlePicker(),
-            accept: ["image/jpg"],
+            accept: ["image/*"],
             maxFiles: 1,
             minFiles: 1,
             imageMax: [300, 150],

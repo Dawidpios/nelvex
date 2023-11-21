@@ -4,6 +4,7 @@ import { verifyPassword } from "../../utilities/passwordManage/passwordManage";
 
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
     updateAge: 10,

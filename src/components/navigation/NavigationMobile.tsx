@@ -15,7 +15,7 @@ const NavigationMobile = () => {
   };
 
   const logOutHandler = () => {
-    signOut();
+    signOut({redirect: true, callbackUrl: "/"});
   };
   
   const isLogged = session && session.user;

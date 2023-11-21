@@ -10,7 +10,7 @@ const NavigationDesc = () => {
   const { data: session } = useSession();
 
   const logOutHandler = () => {
-    signOut();
+    signOut({redirect: true, callbackUrl: "/"});
   };
   const isLogged = session && session.user;
 

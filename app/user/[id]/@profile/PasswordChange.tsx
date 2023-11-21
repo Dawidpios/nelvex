@@ -1,6 +1,8 @@
 "use client";
 import { useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useSession, signOut } from "next-auth/react";
+import toast, {Toaster} from 'react-hot-toast';
 import style from "./profile.module.scss";
 import { FaRectangleXmark } from "react-icons/fa6";
 
@@ -11,6 +13,7 @@ type FormValue = {
 };
 
 const PasswordChangePopup = () => {
+  const { data: session, status } = useSession();
   const {
     register,
     handleSubmit,
@@ -26,7 +29,17 @@ const PasswordChangePopup = () => {
   };
 
   const onSubmit: SubmitHandler<FormValue> = async (data) => {
-    console.log(data);
+    fetch('/api/updatePassword', {
+      method: "POST",
+      body: JSON.stringify({...data, session, status})
+    }).then(res => {
+      if(res.status === 200) {
+        toast.success('Password changed successfully.')
+        setTimeout(() => {
+          signOut()
+        }, 1000)
+      }
+    })
   };
 
   return (
