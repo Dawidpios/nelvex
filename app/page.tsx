@@ -1,7 +1,15 @@
 
+import ProductsList from "@/components/products/ProductsList";
+
+
 const HomePage = async () => {
 
-  return <div>W morde jeza</div>;
+  return (
+    <div>
+    <ProductsList></ProductsList>
+
+    </div>
+  );
 };
 
 export default HomePage;

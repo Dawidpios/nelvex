@@ -9,10 +9,23 @@ const nextConfig = {
     styledComponents: true
   },
   images: {
-    domains: ['https://cdn.filestackcontent.com/*'],
+    domains: ['https://cdn.filestackcontent.com/*', 'i.dummyjson.com'],
   },
   async headers() {
     return [
+      {
+        source: '/api/getProducts',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Credentials',
+            value: "true",
+          },
+        ],
+      },
       {
         source: '/api/getUser',
         headers: [
