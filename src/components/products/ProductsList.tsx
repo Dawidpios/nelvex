@@ -1,6 +1,7 @@
 import { Card, Space } from "antd";
 import Image from "next/image";
 import styles from './ProductList.module.scss'
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -30,27 +31,28 @@ const imageStyle = {
 
 const ProductsList = async () => {
   const data = await getProducts();
-  const { products } = data;
 
   return (
     <div className={styles.productList_container}>
-      {products &&
-        products.map((product: Product) => (
+      {data &&
+        data.map((product: Product) => (
           <Card className={styles.card} bodyStyle={{padding: "0"}} key={product.id}>
             <div className={styles.card_img}>
               <Image
-                alt={"Obrazek"}
+                alt={"Product image"}
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                priority={true}
                 quality={100}
                 src={product.thumbnail}
                 style={imageStyle}
               ></Image>
             </div>
-            <h1 className={styles.header}>{product.title}</h1>
-            <h2 className={styles.header_sub}>{product.brand}</h2>
-            <p className={styles.desc}>{product.description}</p>
-            <p className={styles.paragraph_price}>Available from {product.price}$</p>
-            <button className={styles.button}>Check more</button>
+            <div className={styles.productInfoContainer}> 
+              <h1 className={styles.header}>{product.title}</h1>
+              <p className={styles.paragraph_price}>Available from {product.price}$</p>
+            </div>
+            <Link  href={`/product/${product.id}`}><button className={styles.button}>Check more</button></Link>
           </Card>
         ))}
     </div>

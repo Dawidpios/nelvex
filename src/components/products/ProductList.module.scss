@@ -21,20 +21,18 @@
   border-radius: 10%;
 }
 
+.productInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .header {
   padding: 0 1.2rem;
   font-size: 1.5rem;
   text-align: center;
   color: $color-green;
   height: 20px;
-  &_sub {
-    margin: 2.5rem 0;
-    padding: 0 1rem;
-    font-size: 1.5rem;
-    text-align: center;
-    color: $color-green;
-    height: 20%;
-  }
 }
 
 .paragraph_price {
@@ -48,12 +46,6 @@
   justify-self: flex-end;
 }
 
-.desc {
-  padding: 0 1rem;
-  font-size: 1rem;
-  height: 50px;
-  text-align: center;
-}
 
 .button {
   padding: 0.5rem 1rem 0.5rem 1rem;

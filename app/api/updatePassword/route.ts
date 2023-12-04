@@ -8,7 +8,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const { oldPassword, confirmedOldPassword, newPassword, session, status } = body;
   if (status === "authenticated") {
     const { name, email } = session!.user;
-    const db = await connectDB("users");
+    const db = await connectDB("app");
     if (db) {
       const user = await db.collection("users").findOne({
         $and: [{ name: name }, { email: email }],

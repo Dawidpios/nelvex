@@ -14,7 +14,7 @@ export const authOptions = {
     CredentialsProvider({
       name: 'Credentials',
       async authorize(credentials, req) {
-        const client = await connectDB('users')
+        const client = await connectDB('app')
         const user = await client.collection('users').findOne({email: credentials.email})
         if (!user) {
           throw new Error("User not found!");

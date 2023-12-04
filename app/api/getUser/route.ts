@@ -5,7 +5,7 @@ import { NextRequest } from "next/server";
 export async function POST(req:NextRequest, res:NextResponse) {
   const body = await req.json()
   const id = body
-  const db = await connectDB('users')
+  const db = await connectDB('app')
 
   if(db) {
     const user = await db.collection('users').findOne({id : id})  

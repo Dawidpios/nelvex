@@ -3,7 +3,7 @@ import { connectDB } from "../../utilities/connectDB/connectDB";
 import { NextRequest } from "next/server";
 
 export async function GET(req:NextRequest, res:NextResponse) {
-  const db = await connectDB('users')
+  const db = await connectDB('app')
   
   if(db) {
     const users = db.collection('users').find({})

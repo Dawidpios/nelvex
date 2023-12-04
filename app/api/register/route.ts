@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt'
 export async function POST(req: NextRequest, res:NextResponse) {
   const body =  await req.json()
   const { login, password, email, name, surname } = body;
-  const db = await connectDB('users');
+  const db = await connectDB('app');
   if(db) {
     const user = await db.collection('users').findOne({
       $or: [

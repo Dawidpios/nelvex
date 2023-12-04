@@ -6,7 +6,7 @@ export async function POST(req: NextRequest, res:NextResponse) {
   const body =  await req.json()
   const {id, image} = body
 
-  const db = await connectDB('users')
+  const db = await connectDB('app')
   if(db) {
     const user = await db.collection('users').findOne({ id: id })
     if(user) {
