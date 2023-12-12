@@ -23,7 +23,7 @@ export async function POST(req: NextRequest, res:NextResponse) {
       })
     }
     const hashedPassword = await bcrypt.hash(password, 12)
-    await db.collection('users').insertOne({ login, password: hashedPassword, email, name, surname })
+    await db.collection('users').insertOne({ login, password: hashedPassword, email, name, surname, cart: [] })
     const registeredUser = await db.collection('users').findOne({
       $or: [
         { login: login },

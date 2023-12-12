@@ -1,0 +1,61 @@
+@import '../../src/styles/colors.scss';
+
+.productPage {
+  padding: 1rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.imageContainer {
+  position: relative;
+  width:50%;
+  max-width: 35rem;
+  height: auto;
+  min-height: 20rem;
+  border: 2px solid $color-green;
+  border-radius: .5rem;
+}
+
+.mainInformationContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.title {
+  color: $color-green;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.paragraph {
+  font-size: 1.2rem;
+  color: $color-black;
+}
+
+.descriptionContainer {
+  & .paragraph {
+    font-weight: bold;
+  }
+}
+
+.cartContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+}
+
+.statisticsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
