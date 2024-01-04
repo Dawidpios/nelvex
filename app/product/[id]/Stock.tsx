@@ -1,10 +1,11 @@
 'use client'
 import styles from "../ProductPage.module.scss";
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import counterReducer from "./counterReducer";
 import toast, {Toaster} from 'react-hot-toast';
+import { revalidateTag } from "next/cache";
 
 type Props = {
   id: number;
@@ -16,6 +17,7 @@ const Stock = ({ id, stock }: Props) => {
   const router = useRouter();
   const [{count}, dispatch] = useReducer(counterReducer, {count: 0}) 
   const { data: session, status } = useSession();
+  const amount = stock - count
 
   const decrementHandler = (event:any) => {
     event.preventDefault()
@@ -35,29 +37,34 @@ const Stock = ({ id, stock }: Props) => {
         productId: id,
         stock: count
       }),
-      cache: 'no-cache'
+      cache: 'no-cache',
+      next: {
+         tags: ['stock'] 
+      }
     }).then(res => {
       if(res.ok) {
-        dispatch({ type: 'reset' })
         router.refresh()
       } else {
         throw new Error('Something went wrong')
       }
-    }).catch(e=> toast.error(e))
+    })
+    .catch(e=> toast.error(e))
+
+    dispatch({ type: 'reset' })
   }
   return (
     <>
       <div className={styles.statisticsContainer}>
-        <p className={styles.paragraph}><b>Stock:</b> {stock - count}</p>
+        <p className={styles.paragraph}><b>Stock:</b> {amount}</p>
       </div>
       <div className={styles.userCart}>
         <form className={styles.formContainer}>
-          <div>
-            <button disabled={count <= 0} onClick={decrementHandler}>-</button>
+          <div className={styles.counterContainer}>
+            <button className={styles.button} disabled={count <= 0} onClick={decrementHandler}>-</button>
               {count}
-            <button disabled={count >= stock} onClick={incrementHandler}>+</button>
+            <button className={styles.button} disabled={count >= stock} onClick={incrementHandler}>+</button>
           </div>
-          <button onClick={onSubmit} type="submit" value="Dodaj do koszyka"></button>
+          <button className={styles.button} onClick={onSubmit} type="submit" value="Dodaj do koszyka">Add to cart</button>
         </form>
       </div>
       <Toaster/>

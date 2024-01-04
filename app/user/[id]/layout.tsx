@@ -6,17 +6,15 @@ import { useGlobalContext } from "../../Context/store";
 
 const RootLayout = ({
   children,
-  products,
   profile,
   buyHistory,
-  topUp,
+  cart,
   currency,
 }: {
   children: React.ReactNode;
-  products: React.ReactNode;
   profile: React.ReactNode;
   buyHistory: React.ReactNode;
-  topUp: React.ReactNode;
+  cart: React.ReactNode;
   currency: React.ReactNode;
 }) => {
   const { userPlayground } = useGlobalContext();
@@ -25,9 +23,8 @@ const RootLayout = ({
     <div className={style.layout}>
       <Sidebar></Sidebar>
       {userPlayground === "profile" && profile}
-      {userPlayground === "products" && products}
       {userPlayground === "history" && buyHistory}
-      {userPlayground === "topup" && topUp}
+      {userPlayground === "cart" && cart}
       {userPlayground === "currency" && currency}
     </div>
   );
