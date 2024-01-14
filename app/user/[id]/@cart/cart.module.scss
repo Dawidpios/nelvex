@@ -46,3 +46,12 @@
     font-size: 5rem;
   }
 }
+
+.noItemsParagraph {
+  font-weight: bolder;
+  font-size: 2rem;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+}

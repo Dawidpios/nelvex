@@ -2,11 +2,11 @@ import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
 
 export async function POST(req: NextRequest, res: NextResponse) {
-  const id =  Number(await req.json())
+  const id =  await req.json()
   const db = await connectDB('app')
 
   if(db) {
-    const product = await db.collection('products').findOne({ id: id });
+    const product = await db.collection('products').findOne({ id : id });
     
     if(product) {
       return NextResponse.json({...product}, {status: 200})

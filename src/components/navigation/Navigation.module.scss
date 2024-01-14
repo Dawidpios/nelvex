@@ -9,6 +9,9 @@
   justify-content: space-around;
   align-items: center;
   list-style: none;
+  background-color: aliceblue;
+  margin: 0;
+  z-index: 2;
 }
 
 .navigation_link {
@@ -24,10 +27,37 @@
   composes:navigation_link;
   width: 20%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .defaultAvatar {
   font-size: 25px;
+}
+
+.user_menu {
+  position: relative;
+  top:-100px;
+  padding: 0;
+  margin: 0px 1rem 0px 0px;
+  width:20%;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  background-color: aqua;
+  transition: all .5s;
+  z-index:0;
+  & li {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 3rem;
+  }
+}
+
+.openMenu {
+  transition: all .5s;
+  top: 0px;
 }

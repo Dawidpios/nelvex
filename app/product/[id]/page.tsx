@@ -15,17 +15,19 @@ type Product = {
   description: string;
   brand: string;
   category: string;
-  rating: number;
+  rating: {
+    rate: number;
+    count: number
+  };
   stock: number;
-  images: string;
-  thumbnail: string;
+  image: string;
 };
-
+const placeholder = 'https://placehold.co/600x400/000000/FFFFFF/png?font=montserrat&text=No%20image%5CnSorry'
 const getProduct = async (id: string) => {
   const product = await fetch("http://localhost:3000/api/getSingleProduct", {
     method: "POST",
     body: JSON.stringify(id),
-    cache: "no-cache",
+    cache: 'no-cache'
   });
   const result = await product.json();
   return result;
@@ -37,12 +39,10 @@ const ProductPage = async ({ params }: ParamsProps) => {
     title,
     price,
     description,
-    brand,
     category,
     rating,
     stock,
-    images,
-    thumbnail,
+    image,
   }: Product = product;
 
   if (product.message === "Product not found") {
@@ -58,21 +58,20 @@ const ProductPage = async ({ params }: ParamsProps) => {
           sizes="(max-width: 768px) 100vw, 33vw"
           priority={true}
           quality={100}
-          src={thumbnail}
+          src={image ? image : placeholder}
         ></Image>
       </div>
       <h1 className={styles.title}>{title}</h1>
       <div className={styles.mainInformationContainer}>
-        <p className={styles.paragraph}><b>Brand:</b> {brand}</p>
-        <p className={styles.paragraph}><b>Category:</b> {category}</p>
+        <p className={styles.paragraph}><b>Category:</b> {category ? category : 'None'}</p>
         <p className={styles.paragraph}><b>Price:</b> {price}$</p>
-        <p className={styles.paragraph}><b>Rating:</b> {rating}</p>
+        <p className={styles.paragraph}><b>Rating:</b> {rating ? rating.rate : 'Product do not have rating yet'}</p>
       </div>
       <div className={styles.descriptionContainer}>
-        <p className={styles.paragraph}>{description}</p>
+        <p className={styles.paragraph}>{description ? description : ''}</p>
       </div>
       <div className={styles.cartContainer}>
-        <Stock id={Number(params.id)} stock={stock}/>
+        <Stock id={params.id} stock={stock}/>
       </div>
     </section>
   );

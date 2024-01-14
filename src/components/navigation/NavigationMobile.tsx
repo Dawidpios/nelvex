@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -15,43 +15,57 @@ const NavigationMobile = () => {
   };
 
   const logOutHandler = () => {
-    signOut({redirect: true, callbackUrl: "/"});
+    signOut({ redirect: true, callbackUrl: "/" });
   };
-  
+
   const isLogged = session && session.user;
 
   return (
     <>
-    <div className={`${styles.navigation} ${openMenu && styles.openMenu}`}>
-      <ul className={`${styles.navigation_ul}`}>
-        <li className={styles.navigation_link}>
-          <Link href={`/`}>Home Page</Link>
-        </li>
-        <li className={styles.navigation_link}>
-          <Link href={`/promotions`}>Promotions</Link>
-        </li>
-        {!isLogged ? (
-        <>
+      <div className={`${styles.navigation} ${openMenu && styles.openMenu}`}>
+        <ul className={`${styles.navigation_ul}`}>
           <li className={styles.navigation_link}>
-            <Link href={`/register`}>Register</Link>
+            <Link href={`/`} onClick={handleOpenMenu}>
+              Home Page
+            </Link>
           </li>
           <li className={styles.navigation_link}>
-            <Link href={`/login`}>Login</Link>
+            <Link href={`/product`} onClick={handleOpenMenu}>
+              Products
+            </Link>
           </li>
-        </>
-      ) : (
-        <li className={styles.navigation_link_userPanel}>
-            <Link href={`/user/${session?.user?.id}`}>
-              {session?.user?.name}
-            </Link>
-            <Link href={`/`} onClick={logOutHandler}>
-              Log out
-            </Link>
-        </li>
-      )}
-      </ul>
-    </div>
-    <MdKeyboardDoubleArrowDown
+          {!isLogged ? (
+            <>
+              <li className={styles.navigation_link}>
+                <Link href={`/register`} onClick={handleOpenMenu}>
+                  Register
+                </Link>
+              </li>
+              <li className={styles.navigation_link}>
+                <Link href={`/login`} onClick={handleOpenMenu}>
+                  Login
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li className={styles.navigation_link_userPanel}>
+              <Link href={`/product/add`} onClick={handleOpenMenu}>
+                Add product
+              </Link>
+              <Link
+                href={`/user/${session?.user?.id}`}
+                onClick={handleOpenMenu}
+              >
+                {session?.user?.name}
+              </Link>
+              <Link href={`/`} onClick={logOutHandler}>
+                Log out
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
+      <MdKeyboardDoubleArrowDown
         onClick={handleOpenMenu}
         className={`${styles.icon} ${openMenu && styles.reverseIcon}`}
       />

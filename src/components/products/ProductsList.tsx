@@ -1,6 +1,6 @@
-import { Card, Space } from "antd";
+import { Card } from "antd";
 import Image from "next/image";
-import styles from './ProductList.module.scss'
+import styles from "./ProductList.module.scss";
 import Link from "next/link";
 
 type Product = {
@@ -8,51 +8,54 @@ type Product = {
   title: string;
   description: string;
   price: number;
-  discountPercentage: number;
   rating: number;
   stock: number;
-  brand: string;
   category: string;
-  thumbnail: string;
+  image: string;
 };
 
-const getProducts = async () => {
-  const dbProducts = await fetch("http://localhost:3000/api/getProducts", {
-    method: "GET",
-  });
-  const result = await dbProducts.json();
+type Props = {
+  products: Product[]
+}
+ const placeholder = 'https://placehold.co/600x400/000000/FFFFFF/png?font=montserrat&text=No%20image%5CnSorry'
 
-  return result;
-};
+
 
 const imageStyle = {
-  borderRadius: '2%',
-}
+  borderRadius: "2%",
+};
 
-const ProductsList = async () => {
-  const data = await getProducts();
-
+const ProductsList = async ({products} : Props) => {
+  
   return (
     <div className={styles.productList_container}>
-      {data &&
-        data.map((product: Product) => (
-          <Card className={styles.card} bodyStyle={{padding: "0"}} key={product.id}>
+      {products &&
+        products.map((product: Product) => (
+          <Card
+            className={styles.card}
+            bodyStyle={{ padding: "0" }}
+            key={product.id}
+          >
             <div className={styles.card_img}>
-              <Image
-                alt={"Product image"}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                priority={true}
-                quality={100}
-                src={product.thumbnail}
-                style={imageStyle}
-              ></Image>
+                <Image
+                  alt={"Product image"}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority={true}
+                  quality={100}
+                  src={`${product?.image ? product.image : placeholder}`}
+                  style={imageStyle}
+                ></Image>
             </div>
-            <div className={styles.productInfoContainer}> 
+            <div className={styles.productInfoContainer}>
               <h1 className={styles.header}>{product.title}</h1>
-              <p className={styles.paragraph_price}>Available from {product.price}$</p>
+              <p className={styles.paragraph_price}>
+                Available from {product.price}$
+              </p>
             </div>
-            <Link  href={`/product/${product.id}`}><button className={styles.button}>Check more</button></Link>
+            <Link href={`/product/${product.id}`}>
+              <button className={styles.button}>Check more</button>
+            </Link>
           </Card>
         ))}
     </div>

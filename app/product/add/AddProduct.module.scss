@@ -1,0 +1,16 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  label {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  textarea {
+    max-width: 300px;
+    min-width: 100px;
+    max-height: 150px;
+    min-height: 50px;
+  }
+}

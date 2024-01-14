@@ -14,7 +14,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         $and: [{ name: name }, { email: email }],
       });
       if (user) {
-        console.log(confirmedOldPassword)
         const validOldPassword = await verifyPassword(
           oldPassword,
           user.password

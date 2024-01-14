@@ -1,12 +1,11 @@
 
-import ProductsList from "@/components/products/ProductsList";
 
 
 const HomePage = async () => {
 
   return (
     <div>
-    <ProductsList></ProductsList>
+    Strona główna
 
     </div>
   );

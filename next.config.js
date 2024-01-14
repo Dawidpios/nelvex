@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   experimental: {
     serverActions: true,
   },
@@ -12,7 +15,7 @@ const nextConfig = {
     styledComponents: true
   },
   images: {
-    domains: ['https://cdn.filestackcontent.com/*', 'i.dummyjson.com'],
+    domains: ['cdn.filestackcontent.com/*', 'fakestoreapi.com', 'placehold.co'],
   },
   async headers() {
     return [

@@ -5,10 +5,10 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import counterReducer from "./counterReducer";
 import toast, {Toaster} from 'react-hot-toast';
-import { revalidateTag } from "next/cache";
+import action from "../../actions";
 
 type Props = {
-  id: number;
+  id: string;
   stock: number;
 };
 
@@ -18,7 +18,9 @@ const Stock = ({ id, stock }: Props) => {
   const [{count}, dispatch] = useReducer(counterReducer, {count: 0}) 
   const { data: session, status } = useSession();
   const amount = stock - count
-
+// console.log(count)
+// console.log(stock)
+// console.log(id)
   const decrementHandler = (event:any) => {
     event.preventDefault()
     dispatch({ type: 'decrement' })
@@ -37,13 +39,13 @@ const Stock = ({ id, stock }: Props) => {
         productId: id,
         stock: count
       }),
-      cache: 'no-cache',
       next: {
          tags: ['stock'] 
       }
     }).then(res => {
       if(res.ok) {
         router.refresh()
+        
       } else {
         throw new Error('Something went wrong')
       }

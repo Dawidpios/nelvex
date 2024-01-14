@@ -15,6 +15,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       await db
         .collection("users")
         .findOneAndUpdate({ id: userID }, { $set: { cart: newUserCart } });
+      db.close()
       return NextResponse.json({ id: itemID }, { status: 200 });
     }
   }
