@@ -21,7 +21,8 @@ type Cart = {
 const getUserCart = async (id: string) => {
   const res = await fetch(
     `http://localhost:3000/api/getUserCart?userId=${id}`,
-    { cache: "no-cache" }
+    {
+      next: { tags: ['cart'] } }
   );
   const cart = await res.json();
   return cart;

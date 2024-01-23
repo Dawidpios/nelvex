@@ -10,13 +10,35 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     if (user) {
       const newUserCart = user.cart.filter(
-        ({ id }: { id: number }) => id !== itemID
+        ({ id }: { id: string }) => id !== itemID
+      );
+      const updatedHistory = user.history.map(
+        (item: { id: string; status: string }) => {
+          if (item.id === itemID) {
+            item.status = "Cancelled";
+          }
+          return item;
+        }
       );
       await db
         .collection("users")
-        .findOneAndUpdate({ id: userID }, { $set: { cart: newUserCart } });
-      db.close()
+        .updateMany(
+          { id: userID },
+          { $set: { cart: newUserCart, history: [...updatedHistory] } }
+        );
+      const productStock = user.cart.find(
+        (item: { id: string }) => item.id === itemID
+      ).stock;
+      await db.collection("products").updateOne(
+        { id: itemID },
+        {
+          $inc: {
+            stock: productStock,
+          },
+        }
+      );
       return NextResponse.json({ id: itemID }, { status: 200 });
     }
+    db.close();
   }
 }

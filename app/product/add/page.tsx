@@ -1,8 +1,9 @@
 
+
 import AddForm from './AddForm';
 
 const AddProduct = () => {
-  return ( <AddForm />);
+  return ( <AddForm /> );
 }
  
 export default AddProduct;

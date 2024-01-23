@@ -20,7 +20,8 @@ const AddImage = () => {
           pickerOptions={{
             fromSources: ["local_file_system", "url"],
             onUploadDone: (data) => {
-              
+              console.log(data)
+              setProductImageUrl(data.filesUploaded[0].url)
             },
             onClose: () => handlePicker(),
             accept: ["image/*"],

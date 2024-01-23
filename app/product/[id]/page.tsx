@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import styles from '../ProductPage.module.scss'
 import Stock from "./Stock";
+import getProduct from "./getProduct";
 
 type ParamsProps = {
   params: {
@@ -23,15 +24,6 @@ type Product = {
   image: string;
 };
 const placeholder = 'https://placehold.co/600x400/000000/FFFFFF/png?font=montserrat&text=No%20image%5CnSorry'
-const getProduct = async (id: string) => {
-  const product = await fetch("http://localhost:3000/api/getSingleProduct", {
-    method: "POST",
-    body: JSON.stringify(id),
-    cache: 'no-cache'
-  });
-  const result = await product.json();
-  return result;
-};
 
 const ProductPage = async ({ params }: ParamsProps) => {
   const product = await getProduct(params.id);

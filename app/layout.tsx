@@ -1,8 +1,9 @@
 import { Poppins } from "next/font/google";
-import Navigation from "@/components/navigation/Navigation"
-import ContextProvider  from './Context/store';
-import "./globals.css";
+import Navigation from "@/components/navigation/Navigation";
+import ContextProvider from "./Context/store";
 import Session from "./Context/session";
+import ReactTanStackQuery from "./Context/rtq";
+import "./globals.css";
 
 export const metadata = {
   title: "Nelvex",
@@ -18,17 +19,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en">
       <Session>
-      <ContextProvider>
-        <body className={poppins.className}>
-        <Navigation></Navigation>
-          {children}
-        </body>
+        <ContextProvider>
+          <ReactTanStackQuery>
+            <body className={poppins.className}>
+              <Navigation></Navigation>
+              {children}
+            </body>
+          </ReactTanStackQuery>
         </ContextProvider>
-        </Session>
+      </Session>
     </html>
   );
 }

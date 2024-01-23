@@ -1,8 +1,10 @@
 "use client";
-import { revalidatePath } from "next/cache";
+
 import styles from "./cart.module.scss";
 import { FcFullTrash } from "react-icons/fc";
 import action from "../../../actions";
+import { useMutation } from "@tanstack/react-query";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const TrashBin = ({ userID, itemID }: { userID: string; itemID: number }) => {
   const deleteItemFromCart = async () => {
@@ -13,12 +15,24 @@ const TrashBin = ({ userID, itemID }: { userID: string; itemID: number }) => {
         itemID: itemID,
       }),
     });
-    action("user");
   };
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: deleteItemFromCart,
+    onSuccess: () => {
+      action("cart");
+    },
+  });
 
   return (
     <div className={styles.cardDeleteButtonContainer}>
-      <FcFullTrash onClick={deleteItemFromCart} className={styles.trash} />
+      {isPending ? (
+        <CircularProgress color="secondary" variant="indeterminate" />
+      ) : (
+        <FcFullTrash
+          onClick={async () => await mutateAsync()}
+          className={styles.trash}
+        />
+      )}
     </div>
   );
 };
