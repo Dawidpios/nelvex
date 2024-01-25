@@ -5,11 +5,15 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import toast, {Toaster} from 'react-hot-toast';
 import style from './Login.module.scss'
 import { signIn} from 'next-auth/react'
+import {z} from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod';
 
-type LoginValue = {
-  email: string;
-  password: string;
-};
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string()
+})
+
+type typeLoginSchema = z.infer<typeof loginSchema>
 
 const Login = () => {
 
@@ -17,19 +21,31 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<LoginValue>();
+    formState: { errors, isSubmitting },
+  } = useForm<typeLoginSchema>({
+    resolver: zodResolver(loginSchema)
+  });
   
 
-  const onSubmit: SubmitHandler<LoginValue> = async (data) => {
-    const loginStatus = await signIn("credentials", {
-     ...data,
-     redirect: false
-    })
-    if(loginStatus?.error) {
-      toast.error(loginStatus.error)
+  const onSubmit: SubmitHandler<typeLoginSchema> = async (data) => {
+    try {
+      const { success } = loginSchema.safeParse(data)
+      if(!success) {
+        throw 'Validation failed, try again'
+      }
+      const loginStatus = await signIn("credentials", {
+        ...data,
+        redirect: false
+       })
+       if(loginStatus?.error) {
+         toast.error(loginStatus.error)
+       } else {
+         router.push('/')
+       }  
     }
-    router.push('/')
+    catch(error) {
+      toast.error(error as string)
+    }
   };
 
   return (
@@ -39,19 +55,19 @@ const Login = () => {
       type='email'
       placeholder='User email'
       className={style.form_textField}
-        {...register("email", { required: true, minLength: 5, maxLength: 35 })}
+        {...register("email")}
       />
       {errors.email && <span>{errors.email?.message}</span>}
 
       <input
       placeholder='Password'
       className={style.form_textField}
-        {...register("password", { required: true, minLength: 8 })}
+        {...register("password")}
       />
       {errors.password && <span>{errors.password?.message}</span>}
 
-      <button className={style.form_button} type="submit">
-        Login
+      <button disabled={isSubmitting} className={style.form_button} type="submit">
+        {!isSubmitting ? "Login" : "Logging..."}
       </button>
     </form>
     <Toaster/>
