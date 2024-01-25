@@ -30,7 +30,8 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    reset,
   } = useForm<typeRegisterSchema>({
     resolver: zodResolver(registerSchema),
   });
@@ -41,16 +42,17 @@ const Register = () => {
       if (!success) {
         throw "Validation failed";
       }
-      fetch("/api/register", {
+      await fetch("/api/register", {
         method: "POST",
         body: JSON.stringify(formData),
       }).then(async (res) => {
         const { message } = await res.json();
         if (res.status === 200) {
+          reset()
           toast.success(message);
           setTimeout(() => {
             router.push("/");
-          }, 1500);
+          }, 2500);
         } else {
           toast.error(message);
         }
@@ -112,8 +114,8 @@ const Register = () => {
             {errors.password.message}
           </span>
         )}
-        <button className={style.form_button} type="submit">
-          Register
+        <button disabled={isSubmitting} style={{opacity: isSubmitting ? '0.4' : '1'}} className={style.form_button} type="submit">
+          {!isSubmitting ? 'Register' : "Submitting..."}
         </button>
       </form>
       <Toaster />
