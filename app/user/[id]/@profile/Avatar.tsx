@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import style from "./profile.module.scss";
-import { PickerOverlay } from "filestack-react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -32,20 +31,7 @@ const Avatar = () => {
       <button onClick={handlePicker} className={style.button}>
         Pick avatar
       </button>
-      {showPicker && (
-        <PickerOverlay
-          apikey={process.env.FILESTACK_API as string}
-          pickerOptions={{
-            fromSources: ["local_file_system", "url"],
-            onUploadDone: (data) => {userAvatarUpdate(id as string, data.filesUploaded[0].url)},
-            onClose: () => handlePicker(),
-            accept: ["image/*"],
-            maxFiles: 1,
-            minFiles: 1,
-            imageMax: [300, 150],
-          }}
-        ></PickerOverlay>
-      )}
+      
     </>
   );
 };

@@ -19,6 +19,9 @@ type Props = {
 const getProducts = async () => {
   const result = await fetch("http://localhost:3000/api/getProducts", {
     method: "GET",
+    next: {
+      tags: ['getProducts']
+    }
   });
   const products = await result.json()
   return products;

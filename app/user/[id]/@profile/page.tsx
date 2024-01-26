@@ -34,7 +34,7 @@ const Profile = async ({ params, searchParams }: { params: { id: string }, searc
       </div>
       <div className={style.controlPanel}>
         <h3 className={style.smallHeader}>Control panel</h3>
-        <Avatar></Avatar>
+        {/* <Avatar></Avatar> */}
         <PasswordChange />
       </div>
     </section>
