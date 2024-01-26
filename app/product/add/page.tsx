@@ -1,9 +1,9 @@
 
 
-import AddForm from './AddForm';
+import AddProductForm from './AddProductForm';
 
 const AddProduct = () => {
-  return ( <AddForm /> );
+  return ( <AddProductForm /> );
 }
  
 export default AddProduct;

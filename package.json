@@ -14,7 +14,6 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/material": "^5.14.5",
     "@tanstack/react-query": "^5.17.15",
-    "@types/filestack-react": "^4.0.2",
     "@types/node": "20.4.9",
     "@types/react": "18.2.19",
     "@types/react-dom": "18.2.7",
@@ -24,8 +23,7 @@
     "css-loader": "^6.8.1",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
-    "filestack-js": "^3.27.0",
-    "filestack-react": "^4.0.1",
+    "firebase": "^10.7.2",
     "framer-motion": "^10.16.5",
     "mongodb": "^5.8.1",
     "moongose": "^1.0.0",
@@ -39,9 +37,11 @@
     "sass": "^1.65.1",
     "typescript": "5.1.6",
     "use-breakpoint": "^3.1.1",
+    "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0"
+    "@types/bcrypt": "^5.0.0",
+    "@types/uuid": "^9.0.7"
   }
 }

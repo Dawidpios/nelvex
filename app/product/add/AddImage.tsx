@@ -1,36 +1,45 @@
 "use client";
-import { useState } from "react";
-import { PickerOverlay } from "filestack-react";
-import { useGlobalContext } from "../../Context/store";
+import React from "react";
+import { useSession } from "next-auth/react";
+import { storage } from "../../utilities/fireBase/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 
-const AddImage = () => {
-  const { setProductImageUrl } = useGlobalContext();
-  const [showPicker, setShowPicker] = useState(false);
+type AddImageProps = {
+  setImage: React.Dispatch<React.SetStateAction<string | null>>;
+};
 
-  const handlePicker = () => {
-    setShowPicker((prev) => !prev);
+const AddImage = ({ setImage }: AddImageProps) => {
+  const { data: session, status } = useSession();
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      uploadImage(file);
+    }
+  };
+
+  const uploadImage = async (file: Blob | Uint8Array | ArrayBuffer) => {
+    if (!file) return;
+    if (status === "authenticated") {
+      const imageId = v4();
+      const imageRef = ref(
+        storage,
+        `users/${session.user.id + "=>" + imageId}`
+      );
+      await uploadBytes(imageRef, file);
+      const url = await getDownloadURL(imageRef);
+      setImage(url);
+    }
   };
 
   return (
     <>
-      <button onClick={handlePicker}>Add product image</button>
-      {showPicker && (
-        <PickerOverlay
-          apikey={process.env.FILESTACK_API as string}
-          pickerOptions={{
-            fromSources: ["local_file_system", "url"],
-            onUploadDone: (data) => {
-              console.log(data)
-              setProductImageUrl(data.filesUploaded[0].url)
-            },
-            onClose: () => handlePicker(),
-            accept: ["image/*"],
-            maxFiles: 1,
-            minFiles: 1,
-            imageMax: [300, 150],
-          }}
-        ></PickerOverlay>
-      )}
+      <input
+        type="file"
+        accept="image/png, image/jpeg"
+        onChange={handleImageChange}
+      />
     </>
   );
 };

@@ -15,7 +15,7 @@ const nextConfig = {
     styledComponents: true
   },
   images: {
-    domains: ['cdn.filestackcontent.com/*', 'fakestoreapi.com', 'placehold.co'],
+    domains: ['cdn.filestackcontent.com/*', 'fakestoreapi.com', 'placehold.co', 'firebasestorage.googleapis.com'],
   },
   async headers() {
     return [
