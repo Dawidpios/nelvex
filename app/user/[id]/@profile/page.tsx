@@ -4,7 +4,7 @@ import Avatar from "./Avatar";
 import PasswordChange from "./PasswordChange";
 
 async function getUser(id: string) {
-  const req = await fetch('http://localhost:3000/api/getUser', { method: 'POST', body: JSON.stringify(id)})
+  const req = await fetch('http://localhost:3000/api/getUser', { method: 'POST', body: JSON.stringify(id), next:{ tags: ['getUser'] }})
   const user = await req.json()
   
   if(user.message === 'User not found') { 
@@ -18,7 +18,6 @@ const Profile = async ({ params, searchParams }: { params: { id: string }, searc
   const userReq = await getUser(params.id)
   const { login, name, surname, email, currency} = userReq
 
-  const handler = () => {}
   return ( 
     <section className={style.userProfile}>
       <h1 className={style.header}>{login}</h1>
@@ -34,7 +33,7 @@ const Profile = async ({ params, searchParams }: { params: { id: string }, searc
       </div>
       <div className={style.controlPanel}>
         <h3 className={style.smallHeader}>Control panel</h3>
-        {/* <Avatar></Avatar> */}
+        <Avatar id={params.id}></Avatar>
         <PasswordChange />
       </div>
     </section>

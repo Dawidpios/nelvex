@@ -1,7 +1,7 @@
 "use client";
 
 import action from "../../actions";
-import AddImage from "./AddImage";
+import AddImage from "../../utilities/AddImage/AddImage";
 import styles from "./AddProduct.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
@@ -38,7 +38,9 @@ const AddProductForm = () => {
   ) => {
     
     try {
-      data.image = imageUrl as string
+      if(data.image) {
+        data.image = imageUrl as string
+      }
       const {success} = formSchema.safeParse({ ...data });
       if(!success) {
         throw Error()
