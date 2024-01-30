@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
+import { User } from "../../utilities/models/User";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const body = await req.json();
@@ -16,7 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         await db
           .collection("products")
           .updateOne({ id: productId }, { $set: { stock: newStockValue } });
-        const user = await db.collection("users").findOne({ id: userId });
+        const user = await User.findById(userId);
        
         if (user) {
           if (
@@ -38,9 +39,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 return item
               }
             );
-            await db
-              .collection("users")
-              .updateMany({ id: userId }, { $set: { cart: [...updatedCart], history: [...updatedHistory] } });
+            user.cart = [...updatedCart]
+            user.history = [...updatedHistory]
+            await user.save()
+
             return NextResponse.json({ status: 200 });
           }
           const productParam = {
@@ -53,9 +55,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
           }
           user.cart.push(productParam);
           user.history.push(productParam)
-          await db
-            .collection("users")
-            .updateMany({ id: userId }, { $set: { cart: [...user.cart], history: [...user.history] }});
+          await user.save()
+          
           return NextResponse.json({ status: 200 });
         }
       }

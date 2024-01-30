@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
 import { NextRequest } from "next/server";
+import { User } from "../../utilities/models/User";
 
 export async function POST(req:NextRequest, res:NextResponse) {
   const body = await req.json()
@@ -8,9 +9,18 @@ export async function POST(req:NextRequest, res:NextResponse) {
   const db = await connectDB('app')
 
   if(db) {
-    const user = await db.collection('users').findOne({id : id})  
+    const user = await User.findById(id)  
     if(user) {
-      const {password, _id, ...userWithOutPassword} = user
+      const {login, email, id, surname, name, cart, history } = user
+      const userWithOutPassword = {
+        login,
+        email,
+        id,
+        surname,
+        name, 
+        cart, 
+        history
+      }
       return NextResponse.json({...userWithOutPassword}, {status: 200})
     }
     if(!user) {

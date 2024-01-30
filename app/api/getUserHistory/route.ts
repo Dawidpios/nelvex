@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
+import { User } from "../../utilities/models/User";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const db = await connectDB("app");
@@ -7,7 +8,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const userId = url.searchParams.get("userId");
   
   if (db) {
-    const user = await db.collection("users").findOne({ id: userId });
+    const user = await User.findById(userId);
 
     if (user) {
       return NextResponse.json(user.history, { status: 200 });

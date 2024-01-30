@@ -1,12 +1,13 @@
 import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
+import { User } from "../../utilities/models/User";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const { userID, itemID } = await req.json();
   const db = await connectDB("app");
 
   if (db) {
-    const user = await db.collection("users").findOne({ id: userID });
+    const user = await User.findById(userID);
 
     if (user) {
       const newUserCart = user.cart.filter(
@@ -16,16 +17,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
         (item: { id: string; status: string }) => {
           if (item.id === itemID) {
             item.status = "Cancelled";
+            return item
           }
           return item;
         }
       );
-      await db
-        .collection("users")
-        .updateMany(
-          { id: userID },
-          { $set: { cart: newUserCart, history: [...updatedHistory] } }
-        );
+
       const productStock = user.cart.find(
         (item: { id: string }) => item.id === itemID
       ).stock;
@@ -37,6 +34,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
           },
         }
       );
+     
+      await User
+        .updateMany(
+          { id: userID },
+          { $set: { cart: newUserCart, history: [...updatedHistory] } }
+        );
+
       return NextResponse.json({ id: itemID }, { status: 200 });
     }
     db.close();

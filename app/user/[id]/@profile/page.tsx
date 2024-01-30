@@ -5,8 +5,9 @@ import PasswordChange from "./PasswordChange";
 
 async function getUser(id: string) {
   const req = await fetch('http://localhost:3000/api/getUser', { method: 'POST', body: JSON.stringify(id), next:{ tags: ['getUser'] }})
-  const user = await req.json()
   
+  const user = await req.json()
+
   if(user.message === 'User not found') { 
     notFound()
   }

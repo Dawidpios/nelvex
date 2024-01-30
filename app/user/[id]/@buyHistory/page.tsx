@@ -30,7 +30,7 @@ const History = async ({params} : Props) => {
   return ( <ul>
     {userHistory && userHistory.map((item: Item) => (
       <Card
-      key={item.id}
+      key={`${item.id}`}
       className={styles.card}
       bodyStyle={{
         display: "flex",

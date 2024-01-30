@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
 import { NextRequest } from "next/server";
 import bcrypt from 'bcrypt'
+import { User } from "../../utilities/models/User";
 
 
 export async function POST(req: NextRequest, res:NextResponse) {
@@ -10,7 +11,7 @@ export async function POST(req: NextRequest, res:NextResponse) {
   const { login, password, email, name, surname } = body;
   const db = await connectDB('app');
   if(db) {
-    const user = await db.collection('users').findOne({
+    const user = await User.findOne({
       $or: [
         { login: login },
         { email: email }
@@ -23,14 +24,10 @@ export async function POST(req: NextRequest, res:NextResponse) {
       })
     }
     const hashedPassword = await bcrypt.hash(password, 12)
-    await db.collection('users').insertOne({ login, password: hashedPassword, email, name, surname, cart: [] })
-    const registeredUser = await db.collection('users').findOne({
-      $or: [
-        { login: login },
-        { email: email }
-      ]
-    })
-    await db.collection('users').updateOne({ email: registeredUser?.email }, {$set: { id: registeredUser?._id.toString() }})
+    const newUser = await User.create({ login, password: hashedPassword, email, name, surname, cart: [] })
+    newUser.id = newUser._id.toString()
+    await newUser.save()
+
     db.close()
   }
   

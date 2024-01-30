@@ -1,7 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDB } from "../../utilities/connectDB/connectDB";
 import { verifyPassword } from "../../utilities/passwordManage/passwordManage";
-
+import { User } from "../../utilities/models/User";
 
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -15,7 +15,7 @@ export const authOptions = {
       name: 'Credentials',
       async authorize(credentials, req) {
         const client = await connectDB('app')
-        const user = await client.collection('users').findOne({email: credentials.email})
+        const user = await User.findOne({email: credentials.email})
         if (!user) {
           throw new Error("User not found!");
         }
