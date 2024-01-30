@@ -22,7 +22,7 @@ const Stock = ({ id, stock }: Props) => {
     queryKey: ["order"],
     queryFn: () => getProduct(id),
   });
-  console.log(status)
+
   const {
     mutateAsync,
   } = useMutation({

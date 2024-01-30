@@ -1,12 +1,13 @@
 import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
+import { Products } from "../../utilities/models/Product";
 
 export async function GET(req: NextRequest, res: NextResponse) {
 
   const db = await connectDB('app')
 
   if(db) {
-    const products = await db.collection('products').find({}).toArray() 
+    const products = await Products.find({})
     if(products.length > 0) {
       return NextResponse.json([...products], {status: 200})
     }
