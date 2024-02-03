@@ -2,24 +2,45 @@
 @import '../../styles/colors.scss';
 
 .navigation_ul {
+  position: fixed;
   width: 100%;
-  height: 20%;
+  height: 10vh;
   display: flex;
   padding: 0;
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  background-color: aliceblue;
+  background-color: $color-white;
   margin: 0;
   z-index: 2;
 }
 
 .navigation_link {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-family: $default-font;
   a {
     text-decoration: none;
-    color: $color-blue;
+    color: $color-black;
+  }
+  &_active {
+    font-size: 1.3rem;
+    font-family: $default-font;
+    a { 
+      text-decoration: underline $color-orange; 
+    }
+  }
+}
+
+.navigation_button {
+  width: 15%;
+  border: 1px solid $color-orange;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  background-color: $color-white;
+  a {
+    text-decoration: none;
+    color: $color-orange
   }
 }
 
@@ -27,7 +48,7 @@
   composes:navigation_link;
   width: 20%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -60,4 +81,9 @@
 .openMenu {
   transition: all .5s;
   top: 0px;
+}
+
+.cart { 
+  color: $color-orange;
+  font-size: 2rem;
 }

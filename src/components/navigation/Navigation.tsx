@@ -1,8 +1,8 @@
 'use client'
 
 import useBreakpoint from "use-breakpoint";
-import NavigationDesc from "./NavigationDesc";
-import NavigationMobile from "./NavigationMobile";
+import NavigationDesc from "./(navigationDesktop)/NavigationDesktop";
+import NavigationMobile from "./(navigationMobile)/NavigationMobile";
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
