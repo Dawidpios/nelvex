@@ -2,10 +2,9 @@
 @import '../../styles/colors.scss';
 
 .navigation {
-
   overflow: hidden;
   position: fixed;
-  top: -40%;
+  top: -45%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -13,6 +12,7 @@
   transition: .4s ease-out;
   background-color: $color-white;
   z-index: 9;
+  border-bottom: 2px solid $color-orange;
 }
 
 .icon {
@@ -23,7 +23,7 @@
   right: 2rem;
   font-size: 3rem;
   transition: .4s ease-out;
-  color: $color-blue;
+  color: $color-orange;
   z-index: 10;
   &:hover {
     cursor: pointer;
@@ -55,7 +55,7 @@
   font-size: 1.4rem;
   padding: 1rem;
   a {
-    color: $color-blue;
+    color: $color-orange;
     text-decoration: none;
   }
 }

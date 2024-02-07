@@ -27,17 +27,18 @@ const UserAuth = ({ handleUserMenu, setUserPlayground }: Props) => {
         </Link>
 
         {session?.user?.image ? (
-          <Image
-            onClick={handleUserMenu}
-            loader={() => `${src}?w=${50}&q=${100 || 75}`}
-            src={src}
-            width={50}
-            height={40}
-            quality={100}
-            style={{ borderRadius: "100%", border: "2px solid #FC9918" }}
-            priority={true}
-            alt="Picture of the author"
-          ></Image>
+          <div className={styles.navigation_imageContainer}>
+            <Image
+              onClick={handleUserMenu}
+              loader={() => `${src}?w=${50}&q=${100 || 75}`}
+              src={src}
+              fill={true}
+              quality={100}
+              style={{ borderRadius: "100%", border: "2px solid #FC9918" }}
+              priority={true}
+              alt="Picture of the author"
+            ></Image>
+          </div>
         ) : (
           <RxAvatar onClick={handleUserMenu} className={styles.defaultAvatar} />
         )}

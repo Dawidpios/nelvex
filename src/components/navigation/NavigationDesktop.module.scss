@@ -25,22 +25,47 @@
   &_active {
     font-size: 1.3rem;
     font-family: $default-font;
-    a { 
+    
+    a {
+      color: $color-black; 
       text-decoration: underline $color-orange; 
+    }
+  }
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+    &_active {
+      font-size: 1.5rem;
+    }
+  }
+  @media (min-width: 1750px) {
+    font-size: 2.1rem;
+    &_active {
+      font-size: 2.1rem;
     }
   }
 }
 
 .navigation_button {
-  width: 15%;
+  width: 10%;
   border: 1px solid $color-orange;
   border-radius: 15px;
   font-weight: bold;
   font-size: 1.3rem;
+  padding: .8rem;
   background-color: $color-white;
+  &:hover {
+    cursor: pointer;
+  }
   a {
     text-decoration: none;
     color: $color-orange
+  }
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+  }
+  @media (min-width: 1750px) {
+    font-size: 2.1rem;
+    width: 7%;
   }
 }
 
@@ -86,4 +111,13 @@
 .cart { 
   color: $color-orange;
   font-size: 2rem;
+  @media (min-width: 1750px) {
+    font-size: 3.5rem;
+  }
+}
+
+.navigation_imageContainer {
+  position: relative;
+  width: 25%;
+  height: 9vh;
 }
