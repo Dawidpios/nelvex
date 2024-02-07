@@ -26,7 +26,9 @@ export default function RootLayout({
           <ReactTanStackQuery>
             <body className={poppins.className}>
               <Navigation></Navigation>
-              {children}
+              <div className={'main'}>
+                {children}
+              </div>
             </body>
           </ReactTanStackQuery>
         </ContextProvider>
