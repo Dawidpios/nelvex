@@ -63,20 +63,20 @@ const Stock = ({ id, stock }: Props) => {
             {isFetching ? <CircularProgress style={{ width: '12px', height:'12px' }} color="secondary" variant="indeterminate"  /> : amount}
         </p>
       </div>
-      <div className={styles.userCart}>
+      <>
         <form className={styles.formContainer}>
           <div className={styles.counterContainer}>
             <button
-              className={styles.button}
+              className={styles.button_counter}
               disabled={count <= 0 || status === "unauthenticated"}
               onClick={decrementHandler}
             >
               -
             </button>
-            {count}
+              <p className={styles.count}>{count}</p>
             <button
-              className={styles.button}
-              disabled={count >= stock || status === "unauthenticated"}
+              className={styles.button_counter}
+              disabled={count >= data?.stock || status === "unauthenticated"}
               onClick={incrementHandler}
             >
               +
@@ -92,8 +92,8 @@ const Stock = ({ id, stock }: Props) => {
             Add to cart
           </button>
         </form>
-        {status === "unauthenticated" && <span>Only logged users can order products</span>}
-      </div>
+        {status === "unauthenticated" && <span className={styles.unauthenticatedMessage}>Only logged users can order products</span>}
+      </>
       <Toaster />
     </>
   );

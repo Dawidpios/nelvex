@@ -9,7 +9,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const db = await connectDB("app");
   if (db) {
     const product = await db.collection("products").findOne({ id: productId });
-
     if (product) {
       const isOrderAvaiable = product.stock >= stock;
       if (isOrderAvaiable) {
@@ -55,6 +54,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
           }
           user.cart.push(productParam);
           user.history.push(productParam)
+          if (
+            user.history.find((item: { id: string }) => item?.id === productParam.id)
+          ) {
+            user.history = user.history.filter((item: { id: string }) => item?.id !== productParam.id)
+            user.history.push(productParam)
+          }
+      
           await user.save()
           
           return NextResponse.json({ status: 200 });
