@@ -32,10 +32,7 @@ const ProductList = async () => {
   const products = await getProducts()
 
   return (
-    <div>
       <ProductsList products={products}></ProductsList>
-
-    </div>
   );
 };
 
