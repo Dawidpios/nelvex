@@ -2,13 +2,12 @@
 @import '../../../src/styles/colors.scss';
 
 .listContainer {
+  width: 90%;
   padding: 0;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   list-style: none;
-  gap:1rem;
-  height: 70dvh;
 }
 .listElement {
   margin-top: 1rem;

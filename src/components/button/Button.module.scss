@@ -1,0 +1,22 @@
+@import '../../styles/colors.scss';
+
+.button {
+  align-self: center;
+  width: 75%;
+  height: fit-content;
+  border: none;
+  background-color: $color-red;
+  color: $color-white;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled {
+    color: white;
+    background-color: grey;
+  }
+}
+
+.dupa {
+  background-color: aqua;
+}

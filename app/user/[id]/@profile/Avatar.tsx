@@ -4,6 +4,7 @@ import AddImage from "../../../utilities/AddImage/AddImage";
 import style from './profile.module.scss'
 import {Toaster, toast} from 'react-hot-toast'
 import action from "../../../actions";
+import Button from "@/components/button/Button";
 
 const Avatar = ({id} : {id: string}) => {
 
@@ -28,12 +29,10 @@ const Avatar = ({id} : {id: string}) => {
 
   return (
     <>
-      <button onClick={handlePicker} className={style.button}>
-        Pick avatar
-      </button>
+      <Button text={'Pick avatar'} onClick={handlePicker}></Button>
       {showPicker && <div className={style.avatarModal}>
         <AddImage setImage={setImageUrl}/>
-        <button onClick={handleAvatarChange}>Set new avatar</button>
+        <Button text={'Set new avatar'} onClick={handleAvatarChange}></Button>
         <Toaster/>
       </div>
 }

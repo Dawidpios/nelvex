@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { storage } from "../fireBase/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import Button from "@/components/button/Button";
 
 type AddImageProps = {
   setImage: React.Dispatch<React.SetStateAction<string | null>>;
