@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast, {Toaster} from 'react-hot-toast';
@@ -7,6 +8,7 @@ import style from './Login.module.scss'
 import { signIn} from 'next-auth/react'
 import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
+import loginHero from '../../../public/images/login/loginHero.svg'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -49,7 +51,10 @@ const Login = () => {
   };
 
   return (
-    <>
+    <section className={style.login_section}>
+    <div className={style.imageContainer}>
+      <Image src={loginHero} fill quality={100} style={{borderRadius: '15px'}} alt="Login hero"></Image>
+    </div>
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
       <input
       type='email'
@@ -71,7 +76,7 @@ const Login = () => {
       </button>
     </form>
     <Toaster/>
-    </>
+    </section>
   );
 };
 
