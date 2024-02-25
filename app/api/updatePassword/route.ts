@@ -5,7 +5,7 @@ import { hashPassword, verifyPassword } from "../../utilities/passwordManage/pas
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const body = await req.json();
-  const { oldPassword, confirmedOldPassword, newPassword, session, status } = body;
+  const { oldPassword, newPassword, session, status } = body;
   if (status === "authenticated") {
     const { name, email } = session!.user;
     const db = await connectDB("app");
@@ -18,12 +18,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
           oldPassword,
           user.password
         );
-        const validOldConfirmedPassword = await verifyPassword(
-          confirmedOldPassword,
-          user.password
-        );
 
-        if (validOldPassword && validOldConfirmedPassword) {
+        if (validOldPassword) {
           const hashedPassword = await hashPassword(newPassword);
           await db
             .collection("users")
