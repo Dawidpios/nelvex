@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./ProductCart.module.scss";
+import Button from "../button/Button";
 
 type Product = {
   id: number;
@@ -43,9 +44,9 @@ const ProductCard = ({ product }: { product: Product }) => {
           Available from {product.price}$
         </p>
       </div>
-        <button className={styles.button}>
+        <Button>
           <Link href={`/product/${product.id}`}> Check more</Link>
-        </button>
+        </Button>
     </div>
   );
 };

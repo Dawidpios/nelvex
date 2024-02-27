@@ -66,7 +66,7 @@ const PasswordChangePopup = () => {
 
   return (
     <>
-      <Button text={'Change password'} onClick={handlePopup} />
+      <Button onClick={handlePopup} >Change password</Button>
       <div ref={popupRef} className={style.passwordPopup}>
         <FaRectangleXmark
           className={style.passwordPopup_closeIcon}
@@ -100,7 +100,7 @@ const PasswordChangePopup = () => {
               {errors.newPassword.message}
             </span>
           )}
-          <Button text={'Set new password'} type='submit' className={style.button} />
+          <Button type='submit' className={style.button}>Set new password</Button>
         </form>
       </div>
     </>

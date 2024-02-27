@@ -42,23 +42,23 @@
   margin-left: 2rem;
 }
 
-.button {
-  margin-top: 2rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  width: 50%;
-  border: .2rem solid $color-blue;
-  border-radius: 0.4rem;
-  background-color: $color-black;
-  color: $color-white;
-  font-weight: 700;
-  &:hover {
-    cursor: pointer;
-  }
-  &:disabled {
-    color: white;
-    background-color: grey;
-  }
-}
+// .button {
+//   margin-top: 2rem;
+//   padding: 0.5rem 1rem 0.5rem 1rem;
+//   width: 50%;
+//   border: .2rem solid $color-blue;
+//   border-radius: 0.4rem;
+//   background-color: $color-black;
+//   color: $color-white;
+//   font-weight: 700;
+//   &:hover {
+//     cursor: pointer;
+//   }
+//   &:disabled {
+//     color: white;
+//     background-color: grey;
+//   }
+// }
 
 .avatarModal {
   width: 50%;

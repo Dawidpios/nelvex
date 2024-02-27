@@ -8,6 +8,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import Button from "@/components/button/Button";
 
 const formSchema = z.object({
   title: z.string().min(5, "Title must be 5 characters at least").max(15, "Maximum title length equals 15 characters"),
@@ -76,7 +77,7 @@ const AddProductForm = () => {
         <label htmlFor="Description">Description</label>
         <textarea {...register("description")} maxLength={200} />
         {errors.description && <p>{errors.description.message}</p>}
-        <button type="submit">Wyślij</button>
+        <Button type="submit">Wyślij</Button>
       </form>
       <Toaster />
     </>

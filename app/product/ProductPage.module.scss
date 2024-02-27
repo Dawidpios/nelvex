@@ -118,30 +118,6 @@
   justify-self: flex-end;
 }
 
-
-.button {
-  align-self: center;
-  width: 75%;
-  height: fit-content;
-  border: none;
-  background-color: $color-red;
-  color: $color-white;
-  font-weight: 700;
-  &:hover {
-    cursor: pointer;
-  }
-  &:disabled {
-    color: white;
-    background-color: grey;
-  }
-}
-
-.button_counter {
-  composes:button;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  height: auto;
-}
-
 .unauthenticatedMessage {
   color: $color-red;
   font-weight: bold;

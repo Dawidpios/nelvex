@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./homePage.module.scss";
 import ProductCard from "@/components/products/ProductCart";
+import Button from "@/components/button/Button";
 
 type Product = {
   id: number;
@@ -39,9 +40,9 @@ const BestProducts = async () => {
     <article className={styles.bestProductContainer}>
       <section className={styles.bestProduct_header}>
         <h1>Best Rated Products</h1>
-        <button className={styles.bestProduct_header_button}>
+        <Button className='bestProduct_header_button'>
           <Link href="/product">View all</Link>
-        </button>
+        </Button>
       </section>
         <ul className={styles.bestProduct_productList}>
           {bestProducts &&

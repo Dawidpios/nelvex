@@ -48,28 +48,4 @@
 }
 
 
-.button {
-  align-self: center;
-  padding: .5rem;
-  width: 70%;
-  border: none;
-  border-radius: 0.4rem;
-  background-color: $color-orange;
-  font-weight: 700;
-  margin: .5rem;
-  font-size: 1rem;
-  font-family: $default-font;
-  filter: drop-shadow(0px 0px 21px #F14A16);
-  a {
-    color: $color-white;
-    text-decoration: none;
-  }
-  &:hover {
-    cursor: pointer;
-  }
-  &:disabled {
-    color: white;
-    background-color: grey;
-  }
-}
 

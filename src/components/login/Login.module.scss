@@ -51,21 +51,4 @@
       text-align: left;
     }
   }
-  &_button {
-    padding: 1rem;
-    align-self: center;
-    width: 50%;
-    border: none;
-    border-radius: .8rem;
-    background-color: $color-red;
-    color: $color-white;
-    font-weight: 700;
-    &:hover {
-      cursor: pointer;
-    }
-    &:disabled {
-      color: white;
-      background-color: grey;
-    }
-  }
 }

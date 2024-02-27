@@ -9,6 +9,7 @@ import { signIn} from 'next-auth/react'
 import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import loginHero from '../../../public/images/login/loginHero.svg'
+import Button from '../button/Button';
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -71,9 +72,9 @@ const Login = () => {
       />
       {errors.password && <span>{errors.password?.message}</span>}
 
-      <button disabled={isSubmitting} className={style.form_button} type="submit">
+      <Button disabled={isSubmitting} className='form_button' type="submit">
         {!isSubmitting ? "Login" : "Logging..."}
-      </button>
+      </Button>
     </form>
     <Toaster/>
     </section>

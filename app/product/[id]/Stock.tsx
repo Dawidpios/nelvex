@@ -9,6 +9,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import CircularProgress from "@mui/material/CircularProgress";
 import Submit from "./Submit";
 import action from "../../actions";
+import Button from "@/components/button/Button";
 
 type Props = {
   id: string;
@@ -66,31 +67,29 @@ const Stock = ({ id, stock }: Props) => {
       <>
         <form className={styles.formContainer}>
           <div className={styles.counterContainer}>
-            <button
-              className={styles.button_counter}
+            <Button
+              className='button_counter'
               disabled={count <= 0 || status === "unauthenticated"}
               onClick={decrementHandler}
             >
               -
-            </button>
+            </Button>
               <p className={styles.count}>{count}</p>
-            <button
-              className={styles.button_counter}
+            <Button
+              className='button_counter'
               disabled={count >= data?.stock || status === "unauthenticated"}
               onClick={incrementHandler}
             >
               +
-            </button>
+            </Button>
           </div>
-          <button
-            className={styles.button}
+          <Button
             onClick={onSubmit}
             disabled={status === "unauthenticated"}
             type="submit"
-            value="Dodaj do koszyka"
           >
             Add to cart
-          </button>
+          </Button>
         </form>
         {status === "unauthenticated" && <span className={styles.unauthenticatedMessage}>Only logged users can order products</span>}
       </>
