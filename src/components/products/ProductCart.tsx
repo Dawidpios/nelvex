@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./ProductCart.module.scss";
 import Button from "../button/Button";
+import { FaStar } from "react-icons/fa";
 
 type Product = {
   id: number;
@@ -41,10 +42,11 @@ const ProductCard = ({ product }: { product: Product }) => {
       <div className={styles.productInfoContainer}>
         <h1 className={styles.header}>{product.title}</h1>
         <p className={styles.paragraph_price}>
-          Available from {product.price}$
+          Available from <span style={{color:'red'}}>{product.price}$</span>
         </p>
+        {product.rating ? <p className={styles.paragraph_rating}>{product.rating?.rate}<FaStar style={{color: '#FFAD33'}}/> ({product.rating?.count} Reviews)</p> : <p className={styles.paragraph_rating}>No rated yet</p>}
       </div>
-        <Button>
+        <Button className="productCartButton">
           <Link href={`/product/${product.id}`}> Check more</Link>
         </Button>
     </div>
