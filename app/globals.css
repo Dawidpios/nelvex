@@ -24,3 +24,23 @@ body {
   }
 }
 
+.notFound {
+  margin-top: 10rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:3rem;
+}
+
+.notFound_header {
+  color: #011627;
+  font-size: 4rem;
+}
+
+.notFound_paragraph {
+  color: #011627;
+  font-size: 1.5rem;
+  text-align: center;
+}
