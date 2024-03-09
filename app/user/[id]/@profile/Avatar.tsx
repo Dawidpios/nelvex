@@ -1,18 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import AddImage from "../../../utilities/AddImage/AddImage";
 import style from "./profile.module.scss";
 import { Toaster, toast } from "react-hot-toast";
 import action from "../../../actions";
 import Button from "@/components/button/Button";
+import useHideElement from "./useHideElement";
+import { IoCloseOutline } from "react-icons/io5";
 
 const Avatar = ({ id }: { id: string }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [showPicker, setShowPicker] = useState<boolean>(false);
-
-  const handlePicker = () => {
-    setShowPicker((prev) => !prev);
-  };
+  const avatarModalRef = useRef<HTMLDivElement>(null)
+  const { showElement, setShowElement } = useHideElement(avatarModalRef)
 
   const handleAvatarChange = async () => {
     if (!imageUrl) {
@@ -28,11 +27,12 @@ const Avatar = ({ id }: { id: string }) => {
 
   return (
     <>
-      <Button onClick={handlePicker}>Pick avatar</Button>
-      {showPicker && (
-        <div className={style.avatarModal}>
+      <Button className="noWidthButton" onClick={() => setShowElement(true)}>Pick avatar</Button>
+      {showElement && (
+        <div className={style.avatarModal} ref={avatarModalRef}>
+          <IoCloseOutline className={style.closeIcon} onClick={() => setShowElement(false)}/>
           <AddImage setImage={setImageUrl} />
-          <Button onClick={handleAvatarChange}>Set new avatar</Button>
+          <Button className="noWidthButton" onClick={handleAvatarChange}>Set new avatar</Button>
           <Toaster />
         </div>
       )}

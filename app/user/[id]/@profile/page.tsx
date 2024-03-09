@@ -21,7 +21,7 @@ const Profile = async ({ params, searchParams }: { params: { id: string }, searc
 
   return ( 
     <section className={style.userProfile}>
-      <h1 className={style.header}>{login}</h1>
+      <h1 className={style.header}>User : <span style={{color: '#011627'}}>{login}</span></h1>
       <div className={style.information}>
         <h3 className={style.smallHeader}>User information</h3>
         <p className={style.paragraph}><b>Name: </b>{name}</p>
@@ -32,8 +32,8 @@ const Profile = async ({ params, searchParams }: { params: { id: string }, searc
         <h3 className={style.smallHeader}>User currency</h3>
         <p className={style.paragraph}>{currency ? currency : "You do not have any currency yet"}</p>
       </div>
+      <h3 className={style.smallHeader}>Control panel</h3>
       <div className={style.controlPanel}>
-        <h3 className={style.smallHeader}>Control panel</h3>
         <Avatar id={params.id}></Avatar>
         <PasswordChange />
       </div>

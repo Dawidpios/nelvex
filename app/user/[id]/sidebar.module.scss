@@ -16,4 +16,7 @@
   font-weight: 700;
   font-family: $default-font;
   color: $color-blue;
+  &:hover { 
+    cursor: pointer;
+  }
 }

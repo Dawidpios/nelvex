@@ -15,11 +15,12 @@
 }
 .header {
   width: 100%;
-  text-align: center;
+  text-align: left;
+  color: $color-blue;
 }
 
 .smallHeader {
-  text-align: center;
+  text-align: left;
   color: $color-blue;
 }
 
@@ -34,44 +35,31 @@
 .controlPanel {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  gap: 1rem;
 }
 
 .paragraph {
   margin-left: 2rem;
 }
 
-// .button {
-//   margin-top: 2rem;
-//   padding: 0.5rem 1rem 0.5rem 1rem;
-//   width: 50%;
-//   border: .2rem solid $color-blue;
-//   border-radius: 0.4rem;
-//   background-color: $color-black;
-//   color: $color-white;
-//   font-weight: 700;
-//   &:hover {
-//     cursor: pointer;
-//   }
-//   &:disabled {
-//     color: white;
-//     background-color: grey;
-//   }
-// }
-
 .avatarModal {
-  width: 50%;
-  height: 30%;
+  width: 70%;
+  height: 50%;
   background-color: $color-white;
   position: absolute;
   top: 30%;
-  border-radius: 1.5rem;
-  border: 2px solid $color-black;
+  left:50%;
+  transform: translate(-50%, -30%);
+  border-radius: .5rem;
+  border: 1px solid $color-black;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5); 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
 }
 
 .avatarInput {
@@ -95,16 +83,21 @@
 }
 
 .passwordPopup {
-  top:15%;
-  left: 25%;
-  position: fixed;
-  width: 50%;
+  width: 70%;
   height: 50%;
-  background-color: $color-disabled;
-  border: 2px solid $color-white;
-  border-radius: 1.5rem;
-  padding: 2rem;
-  display: none;
+  background-color: $color-white;
+  position: absolute;
+  top: 30%;
+  left:50%;
+  transform: translate(-50%, -30%);
+  border-radius: .5rem;
+  border: 1px solid $color-black;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .passwordPopup_form {
@@ -113,21 +106,40 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  gap: 2rem;
+  background-color: none;
 }
 
-.passwordPopup_closeIcon {
-  padding: 1rem 2rem;
+.closeIcon {
+  position: absolute;
+  top:0;
+  right: 0;
+  padding: .5rem;
   align-self: flex-end;
   font-size: 2rem;
   color: $color-red;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .passwordPopup_form_input {
-  composes: avatarInput;
-}
-
-.showPopup {
-  display: flex;
-  flex-direction: column;
-  visibility: visible;
+  margin: 1rem;
+  background-color:$color-white;
+  border: none;
+  border-bottom: .5px solid $color-disabled;
+  text-align: left;
+  line-height: 2rem;
+  font-weight: 700;
+  &:focus {
+    outline: none;
+    &::placeholder {
+      text-align: left;
+      color: transparent;
+    }
+  }
+  &::placeholder {
+    font-weight: 700;
+    text-align: left;
+  }
 }

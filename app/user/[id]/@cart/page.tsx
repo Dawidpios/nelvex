@@ -1,8 +1,6 @@
-import Card from "antd/es/card/Card";
-import Image from "next/image";
 import styles from "./cart.module.scss";
 import Link from "next/link";
-import TrashBin from "./TrashBin";
+import Carousel from "@/components/carousel/Carousel";
 
 type Props = {
   params: {
@@ -34,45 +32,8 @@ const Cart = async ({ params }: Props) => {
   return (
     <ul className={styles.cardListContainer}>
       {userCart.length > 0 ? (
-        userCart.map((cart: Cart) => (
-          <Card
-            key={cart.id}
-            className={styles.card}
-            bodyStyle={{
-              display: "flex",
-              padding: "0px",
-              width: "100%",
-              border: "1px solid black",
-              borderRadius: "8px",
-            }}
-          >
-            <div className={styles.imageContainer}>
-              <Image
-                alt={"Product image"}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                priority={true}
-                quality={75}
-                src={cart.image}
-                style={{ borderRadius: "8px 0px 0px 8px" }}
-              ></Image>
-            </div>
-            <div className={styles.cardInfoContainer}>
-              <h1>{cart.title}</h1>
-              <ul>
-                <li>
-                  Quantity: <b>{cart.stock}</b>
-                </li>
-                <li>
-                  Amount: <b>{cart.stock * cart.price}</b>
-                </li>
-              </ul>
-              <Link href={`/product/${cart.id}`}>Check product page</Link>
-            </div>
-            <TrashBin userID={params.id} itemID={cart.id}></TrashBin>
-          </Card>
-        ))
-      ) : (
+        <Carousel children={userCart}/>)
+       : (
         <>
           <p className={styles.noItemsParagraph}>
             You do not have items in your cart
