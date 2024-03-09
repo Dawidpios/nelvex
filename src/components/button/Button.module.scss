@@ -96,3 +96,10 @@
     padding: 1.5rem;
     border-radius: .7rem;
   }
+
+  .noWidthButton {
+    composes: button;
+    width: unset;
+    padding: 1rem;
+    border-radius: .5rem;
+  }

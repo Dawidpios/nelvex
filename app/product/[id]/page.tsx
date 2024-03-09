@@ -68,6 +68,7 @@ const ProductPage = async ({ params }: ParamsProps) => {
       </div>
       <div className={styles.descriptionContainer}>
         <p className={styles.paragraph}>{description ? description : ""}</p>
+        <p className={styles.paragraph}><b>Price:</b> {price}$</p>
       </div>
       <div className={styles.cartContainer}>
         <Stock id={params.id} stock={stock} />
