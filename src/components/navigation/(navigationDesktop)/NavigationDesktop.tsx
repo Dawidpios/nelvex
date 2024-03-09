@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useGlobalContext } from "../../../../app/Context/store";
 import UserMenu from "./UserMenu";
-import UserNotAuth from "./UserNotAuth";
 import UserAuth from "./UserAuth";
 import DefaultNavigation from "./DefaultNavigation";
 
@@ -17,16 +16,14 @@ const NavigationDesc = () => {
   const isLogged = session && status === "authenticated";
 
   const handleUserMenu = () => {
-    setOpenMenu((prev) => !prev);
+    setOpenMenu((prevState) => !prevState);
   };
 
   return (
     <>
       <ul className={styles.navigation_ul}>
-        <DefaultNavigation />
-        {!isLogged ? (
-          <UserNotAuth />
-        ) : (
+        <DefaultNavigation isLogged={isLogged} />
+        {isLogged && (
           <UserAuth
             handleUserMenu={handleUserMenu}
             setUserPlayground={setUserPlayground}

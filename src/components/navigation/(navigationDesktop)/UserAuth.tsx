@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../NavigationDesktop.module.scss";
-import { HiMiniShoppingCart } from "react-icons/hi2";
+import { FiShoppingCart } from "react-icons/fi";
 import { RxAvatar } from "react-icons/rx";
 import { useSession } from "next-auth/react";
 
@@ -23,7 +23,7 @@ const UserAuth = ({ handleUserMenu, setUserPlayground }: Props) => {
             setUserPlayground("cart");
           }}
         >
-          <HiMiniShoppingCart className={styles.cart} />
+          <FiShoppingCart className={styles.cart} />
         </Link>
 
         {session?.user?.image ? (

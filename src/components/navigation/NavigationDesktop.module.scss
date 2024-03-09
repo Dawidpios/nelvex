@@ -3,6 +3,7 @@
 
 .navigation_ul {
   position: fixed;
+  left:0;
   width: 100%;
   height: 10vh;
   display: flex;
@@ -18,6 +19,8 @@
 .navigation_link {
   font-size: 1.3rem;
   font-family: $default-font;
+  text-decoration: none;
+  color: $color-black;
   a {
     text-decoration: none;
     color: $color-black;
@@ -55,7 +58,11 @@
 }
 
 .defaultAvatar {
+  color: $color-red;
   font-size: 25px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .user_menu {
@@ -86,7 +93,7 @@
 }
 
 .cart { 
-  color: $color-orange;
+  color: $color-red;
   font-size: 2rem;
   @media (min-width: 1750px) {
     font-size: 3.5rem;
