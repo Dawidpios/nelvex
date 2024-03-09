@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { storage } from "../fireBase/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import style from './AddImage.module.scss'
 
 type AddImageProps = {
   setImage: React.Dispatch<React.SetStateAction<string | null>>;
@@ -35,7 +36,11 @@ const AddImage = ({ setImage }: AddImageProps) => {
 
   return (
     <>
+      <label className={style.label} htmlFor="fileInput">Choose avatar</label>
       <input
+        name="fileInput"
+        id="fileInput"
+        className={style.input}
         type="file"
         accept="image/png, image/jpeg"
         onChange={handleImageChange}

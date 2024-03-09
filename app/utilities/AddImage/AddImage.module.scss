@@ -1,0 +1,18 @@
+@import '../../../src/styles/colors.scss';
+
+.input {
+  display: none;
+}
+
+.label {
+  border: 1px solid $color-blue;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: .5rem;
+  font-weight: 700;
+  color: $color-blue;
+  background-color: $color-lightWhite;
+  &:hover {
+    cursor: pointer;
+  }
+}
