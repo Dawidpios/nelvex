@@ -17,44 +17,18 @@ type Child = {
 };
 
 const Carousel = ({ children, autoplay }: { children: Child[], autoplay?: boolean }) => {
-
+  console.log(children)
   const settings = {
     dots: false,
     infinite: true,
     speed: !autoplay ? 500 : 4000,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 1,
     nextArrow: autoplay ? <></> : <Arrow direction="next" />,
     prevArrow: autoplay ? <></> : <Arrow direction="back" />,
     autoplay: autoplay,
-    autoplaySpeed: 6000,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    autoplaySpeed: 6000
   };
 
   return (
@@ -62,9 +36,8 @@ const Carousel = ({ children, autoplay }: { children: Child[], autoplay?: boolea
       <Slider {...settings}>
         {children.length > 0 ? (
           children.map((cart) => (
-            <div className={styles.card}>
+            <div key={cart.id} className={styles.card}>
               <Card
-                key={cart.id}
                 bodyStyle={{
                   display: "flex",
                   flexDirection: 'column',

@@ -89,6 +89,9 @@
       text-decoration: none;
       color:white;
     }
+    @media (min-width:1024px) {
+      font-size: 1.8rem;
+    }
   }
 
   .notFoundButton {

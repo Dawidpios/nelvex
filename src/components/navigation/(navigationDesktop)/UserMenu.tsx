@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "../NavigationDesktop.module.scss";
 import { signOut, useSession } from "next-auth/react";
+import DropDown from "./DropDown";
 
 type Props = {
   openMenu: boolean;

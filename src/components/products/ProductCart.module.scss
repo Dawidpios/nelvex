@@ -47,6 +47,10 @@
   white-space: nowrap;
   overflow: hidden;
   color: $color-black;
+  @media (min-width:1024px) {
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+  }
 }
 
 .paragraph_price {
@@ -58,6 +62,9 @@
   color: $color-black;
   height: 20%;
   justify-self: flex-end;
+  @media (min-width:1024px) {
+    font-size: 1.2rem;
+  }
 }
 
 .paragraph_rating {

@@ -2,15 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../NavigationDesktop.module.scss";
 import { FiShoppingCart } from "react-icons/fi";
-import { RxAvatar } from "react-icons/rx";
 import { useSession } from "next-auth/react";
+import DropDown from "./DropDown";
 
 type Props = {
-  handleUserMenu: () => void;
   setUserPlayground: (value: string) => void;
 };
 
-const UserAuth = ({ handleUserMenu, setUserPlayground }: Props) => {
+const UserAuth = ({setUserPlayground }: Props) => {
   const { data: session } = useSession();
   const src = `${session?.user?.image}`;
 
@@ -29,7 +28,6 @@ const UserAuth = ({ handleUserMenu, setUserPlayground }: Props) => {
         {session?.user?.image ? (
           <div className={styles.navigation_imageContainer}>
             <Image
-              onClick={handleUserMenu}
               loader={() => `${src}?w=${50}&q=${100 || 75}`}
               src={src}
               fill={true}
@@ -40,7 +38,7 @@ const UserAuth = ({ handleUserMenu, setUserPlayground }: Props) => {
             ></Image>
           </div>
         ) : (
-          <RxAvatar onClick={handleUserMenu} className={styles.defaultAvatar} />
+          <DropDown setUserPlayground={setUserPlayground} />
         )}
       </>
     </div>
