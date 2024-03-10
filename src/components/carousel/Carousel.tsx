@@ -6,8 +6,7 @@ import Link from "next/link";
 import styles from "./Carousel.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaLess } from "react-icons/fa";
-
+import Arrow from "./Arrow";
 
 type Child = {
   title: string;
@@ -17,22 +16,27 @@ type Child = {
   price: number;
 };
 
-const Carousel = ({ children }: { children: Child[] }) => {
+const Carousel = ({ children, autoplay }: { children: Child[], autoplay?: boolean }) => {
+
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: !autoplay ? 500 : 4000,
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
+    nextArrow: autoplay ? <></> : <Arrow direction="next" />,
+    prevArrow: autoplay ? <></> : <Arrow direction="back" />,
+    autoplay: autoplay,
+    autoplaySpeed: 6000,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1440,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -58,43 +62,43 @@ const Carousel = ({ children }: { children: Child[] }) => {
       <Slider {...settings}>
         {children.length > 0 ? (
           children.map((cart) => (
-            <Card
-              key={cart.id}
-              className={styles.card}
-              bodyStyle={{
-                display: "flex",
-                flexDirection: 'column',
-                padding: "0px",
-                width: "100%",
-                border: "1px solid black",
-                borderRadius: "2px",
-              }}
-            >
-              <div className={styles.imageContainer}>
-                <Image
-                  alt={"Product image"}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  priority={true}
-                  quality={75}
-                  src={cart.image}
-                  style={{ borderRadius: "8px 0px 0px 8px" }}
-                ></Image>
-              </div>
-              <div className={styles.cardInfoContainer}>
-                <h1>{cart.title}</h1>
-                <ul>
-                  <li>
-                    Quantity: <b>{cart.stock}</b>
-                  </li>
-                  <li>
-                    Amount: <b>{cart.stock * cart.price}</b>
-                  </li>
-                </ul>
-                <Link href={`/product/${cart.id}`}>Check product page</Link>
-              </div>
-              {/* <TrashBin userID={params.id} itemID={cart.id}></TrashBin> */}
-            </Card>
+            <div className={styles.card}>
+              <Card
+                key={cart.id}
+                bodyStyle={{
+                  display: "flex",
+                  flexDirection: 'column',
+                  padding: "0px",
+                  width: "100%",
+                  borderRadius: "2px"
+                }}
+              >
+                <div className={styles.imageContainer}>
+                  <Image
+                    alt={"Product image"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority={true}
+                    quality={75}
+                    src={cart.image}
+                    style={{ borderRadius: "8px" }}
+                  ></Image>
+                </div>
+                <div className={styles.cardInfoContainer}>
+                  <h1>{cart.title}</h1>
+                  <ul>
+                    <li>
+                      Quantity: <b>{cart.stock}</b>
+                    </li>
+                    <li>
+                      Price: <b>{cart.price}</b>
+                    </li>
+                  </ul>
+                  <Link href={`/product/${cart.id}`}>Check product page</Link>
+                </div>
+                {/* <TrashBin userID={params.id} itemID={cart.id}></TrashBin> */}
+              </Card>
+            </div>
           ))
         ) : (
           <>

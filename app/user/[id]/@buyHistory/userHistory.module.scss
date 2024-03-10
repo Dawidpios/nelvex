@@ -11,7 +11,7 @@
 
 .imageContainer { 
   position: relative;
-  width: 25%;
+  width: 55%;
   max-width: 250px;
   height: auto;
   margin-right: 1rem;
@@ -19,11 +19,16 @@
 }
 
 .cardInfoContainer { 
+  padding: .5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 50%;
   & h1 {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 1.3rem;
     text-align: center;
     color: $color-green;
@@ -34,6 +39,9 @@
     flex-direction: column;
     align-items: center;
     padding: 0;
+  }
+  a {
+    text-align: center;
   }
 }
 

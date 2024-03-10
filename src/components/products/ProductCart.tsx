@@ -25,14 +25,14 @@ const imageStyle = {
   borderRadius: "2%",
 };
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product, className }: { product: Product, className?: string }) => {
   return (
-    <div className={styles.card} key={product.id}>
+    <div className={`${styles.card} ${className && styles[className]}`} key={product.id}>
       <div className={styles.card_img}>
         <Image
           alt={"Product image"}
           fill
-          sizes="(max-width: 768px) 100vw, 33vw"
+          // sizes="(max-width: 768px) 100vw, 33vw"
           priority={true}
           quality={100}
           src={`${product?.image ? product.image : placeholder}`}

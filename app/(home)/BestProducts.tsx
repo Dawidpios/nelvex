@@ -47,8 +47,8 @@ const BestProducts = async () => {
         <ul className={styles.bestProduct_productList}>
           {bestProducts &&
             bestProducts.map((product: Product) => (
-              <ProductCard product={product} />
-            ))}
+              <ProductCard product={product} className="bestProductCard" />
+           ))}
         </ul>
 
     </article>
