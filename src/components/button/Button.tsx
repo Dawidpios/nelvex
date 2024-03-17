@@ -1,6 +1,4 @@
-import { ReactElement } from "react";
 import styles from "./Button.module.scss";
-import { boolean } from "zod";
 
 type Button = {
   text?: string;
@@ -8,16 +6,26 @@ type Button = {
   className?: string;
   type?: "button" | "submit" | "reset";
   children?: React.ReactNode;
-  disabled?: boolean
+  disabled?: boolean;
+  isLoading?: boolean;
 };
 
-const Button = ({ children, text, onClick, className, type, disabled }: Button) => {
+const Button = ({
+  children,
+  text,
+  onClick,
+  className,
+  type,
+  disabled,
+  isLoading,
+}: Button) => {
   return (
     <button
       type={type && `${type}`}
       className={`${styles.button} ${className && styles[className]}`}
       onClick={onClick && onClick}
       disabled={disabled}
+      style={{ opacity: isLoading ? "0.4" : "1" }}
     >
       {children && children}
       {text}
