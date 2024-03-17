@@ -31,44 +31,46 @@ const History = async ({ params }: Props) => {
   const userHistory = await getUserHistory(params.id);
 
   return (
-    <ul style={{ padding: "0px", width:'100%' }}>
+    <ul className={styles.list}>
       {userHistory &&
         userHistory.map((item: Item) => (
-          <Card
-            key={`${item.id}`}
-            className={styles.card}
-            bodyStyle={{
-              display: "flex",
-              padding: "0px",
-              width: "100%",
-              border: "1px solid black",
-              borderRadius: "8px",
-            }}
-          >
-            <div className={styles.imageContainer}>
-              <Image
-                alt={"Product image"}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                priority={true}
-                quality={100}
-                src={item.image}
-                style={{ borderRadius: "8px 0px 0px 8px" }}
-              ></Image>
-            </div>
-            <div className={styles.cardInfoContainer}>
-              <h1>{item.title}</h1>
-              <ul>
-                <li>
-                  Quantity: <b>{item.stock}</b>
-                </li>
-                <li>
-                  Status: <b>{item.status}</b>
-                </li>
-              </ul>
-              <Link href={`/product/${item.id}`}>Check product page</Link>
-            </div>
-          </Card>
+          <li className={styles.listElement}>
+            <Card
+              key={`${item.id}`}
+              className={styles.card}
+              bodyStyle={{
+                display: "flex",
+                padding: "0px",
+                width: "100%",
+                border: "1px solid black",
+                borderRadius: "8px",
+              }}
+            >
+              <div className={styles.imageContainer}>
+                <Image
+                  alt={"Product image"}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority={true}
+                  quality={100}
+                  src={item.image}
+                  style={{ borderRadius: "8px 0px 0px 8px" }}
+                ></Image>
+              </div>
+              <div className={styles.cardInfoContainer}>
+                <h1>{item.title}</h1>
+                <ul>
+                  <li>
+                    Quantity: <b>{item.stock}</b>
+                  </li>
+                  <li>
+                    Status: <b>{item.status}</b>
+                  </li>
+                </ul>
+                <Link href={`/product/${item.id}`}>Check product page</Link>
+              </div>
+            </Card>
+          </li>
         ))}
     </ul>
   );

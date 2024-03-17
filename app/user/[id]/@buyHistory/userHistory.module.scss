@@ -45,3 +45,33 @@
   }
 }
 
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  width: 100%;
+  height: 50vh;
+  overflow: auto;
+  list-style: none;
+  align-items: center;
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #f3397b;
+    border-radius: 10px;
+    border: 3px none #ffffff;
+  }
+}
+
+.listElement {
+  width: 80%;
+  @media (min-width: 624px) {
+    width: 30%;
+  }
+}

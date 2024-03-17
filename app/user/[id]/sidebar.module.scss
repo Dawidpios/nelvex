@@ -7,10 +7,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   list-style: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 .listElement {
-  margin-top: 1rem;
+  margin: 1rem;
   font-size: 1.4rem;
   line-height: 2rem;
   font-weight: 700;
@@ -18,5 +21,6 @@
   color: $color-blue;
   &:hover { 
     cursor: pointer;
+    color: $color-red;
   }
 }
