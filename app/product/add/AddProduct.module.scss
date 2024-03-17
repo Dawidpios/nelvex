@@ -1,12 +1,49 @@
+@import "../../../src/styles/colors.scss";
+
 .form {
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   gap: .5rem;
-
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  
   label {
     font-size: 1.2rem;
     font-weight: bold;
+    color:grey;
   }
+  input {
+    margin: 0 1rem 1rem 0;
+    background-color:$color-white;
+    border: none;
+    border-bottom: .5px solid $color-disabled;
+    text-align: left;
+    line-height: 2rem;
+    font-weight: 700;
+    &:focus {
+      outline: none;
+      &::placeholder {
+        text-align: left;
+        color: transparent;
+      }
+    }
+    &::placeholder {
+      font-weight: 700;
+      text-align: left;
+    }
+  }
+  select {
+    background-color: $color-white;
+    border-radius: .5rem;
+    &:focus {
+      border-color: $color-red;
+    }
+  }
+
   textarea {
     max-width: 300px;
     min-width: 100px;
