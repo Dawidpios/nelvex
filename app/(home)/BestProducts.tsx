@@ -20,10 +20,9 @@ type Product = {
 const getBestProducts = async () => {
   const result = await fetch("http://localhost:3000/api/getProducts", {
     method: "GET",
-    next: {
-      tags: ["getProducts"],
-    },
+    cache: 'force-cache'
   });
+
   const products = await result.json();
   const filteredProducts = products.sort((a: Product, b: Product) => {
     if (a.hasOwnProperty("rating") && b.hasOwnProperty("rating")) {

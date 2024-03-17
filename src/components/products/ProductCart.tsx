@@ -32,7 +32,7 @@ const ProductCard = ({ product, className }: { product: Product, className?: str
         <Image
           alt={"Product image"}
           fill
-          // sizes="(max-width: 768px) 100vw, 33vw"
+          sizes="(max-width: 768px) 100vw, 33vw"
           priority={true}
           quality={100}
           src={`${product?.image ? product.image : placeholder}`}

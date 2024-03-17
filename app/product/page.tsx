@@ -1,5 +1,5 @@
 import ProductsList from "@/components/products/ProductsList";
-
+export const dynamic = 'force-dynamic'
 type Product = {
   id: number;
   title: string;
@@ -32,7 +32,9 @@ const ProductList = async () => {
   const products = await getProducts()
 
   return (
+    <>
       <ProductsList products={products}></ProductsList>
+    </>
   );
 };
 

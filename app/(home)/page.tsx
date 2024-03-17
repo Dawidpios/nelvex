@@ -2,6 +2,8 @@ import Logo from "./Logo";
 import OfferArticle from "./offerArticle";
 import BestProducts from "./BestProducts";
 import styles from './homePage.module.scss'
+import { Suspense } from "react";
+export const dynamic = 'force-dynamic'
 
 const HomePage = async () => {
 
@@ -10,7 +12,9 @@ const HomePage = async () => {
       <Logo />
       <main className={styles.main}>
         <OfferArticle />
-        <BestProducts />
+        <Suspense fallback={<div>Loading...</div>}>
+          <BestProducts />
+        </Suspense>
       </main>
       <footer></footer>
     </div>
