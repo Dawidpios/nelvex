@@ -8,9 +8,10 @@ import style from './AddImage.module.scss'
 
 type AddImageProps = {
   setImage: React.Dispatch<React.SetStateAction<string | null>>;
+  text?:string;
 };
 
-const AddImage = ({ setImage }: AddImageProps) => {
+const AddImage = ({ setImage , text}: AddImageProps) => {
   const { data: session, status } = useSession();
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -36,7 +37,7 @@ const AddImage = ({ setImage }: AddImageProps) => {
 
   return (
     <>
-      <label className={style.label} htmlFor="fileInput">Choose avatar</label>
+      <label className={style.label} htmlFor="fileInput">{text || 'Choose avatar'}</label>
       <input
         name="fileInput"
         id="fileInput"
