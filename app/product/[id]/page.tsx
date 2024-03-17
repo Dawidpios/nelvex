@@ -40,7 +40,6 @@ const ProductPage = async ({ params }: ParamsProps) => {
     <section className={styles.productPage}>
       <div className={styles.imageContainer}>
         <Image
-          style={{ borderRadius: "2rem" }}
           alt={"Product image"}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
@@ -49,29 +48,31 @@ const ProductPage = async ({ params }: ParamsProps) => {
           src={image ? image : placeholder}
         ></Image>
       </div>
-      <h1 className={styles.title}>{title}</h1>
-      <div className={styles.mainInformationContainer}>
-        {/* <p className={styles.paragraph}><b>Category:</b> {category ? category : 'None'}</p>
-        <p className={styles.paragraph}><b>Price:</b> {price}$</p> */}
-        <p className={styles.paragraph}>
-          <b>Rating: </b>
-          {rating ? (
-            <>
-              <span>
-                {rating.rate}<FaStar style={{color: '#FFAD33'}}/> ({rating.count} Reviews)
-              </span>
-            </>
-          ) : (
-            "Product do not have review yet"
-          )}
-        </p>
-      </div>
-      <div className={styles.descriptionContainer}>
-        <p className={styles.paragraph}>{description ? description : ""}</p>
-        <p className={styles.paragraph}><b>Price:</b> {price}$</p>
-      </div>
-      <div className={styles.cartContainer}>
-        <Stock id={params.id} stock={stock} />
+      <div className={styles.infoContainer}>
+        <h1 className={styles.title}>{title}</h1>
+        <div className={styles.mainInformationContainer}>
+          {/* <p className={styles.paragraph}><b>Category:</b> {category ? category : 'None'}</p>
+          <p className={styles.paragraph}><b>Price:</b> {price}$</p> */}
+          <p className={styles.paragraph}>
+            <b>Rating: </b>
+            {rating ? (
+              <>
+                <span>
+                  {rating.rate}<FaStar style={{color: '#FFAD33'}}/> ({rating.count} Reviews)
+                </span>
+              </>
+            ) : (
+              "Product do not have review yet"
+            )}
+          </p>
+        </div>
+        <div className={styles.descriptionContainer}>
+          <p className={styles.paragraph}>{description ? description : ""}</p>
+          <p className={styles.paragraph}><b>Price:</b> {price}$</p>
+        </div>
+        <div className={styles.cartContainer}>
+          <Stock id={params.id} stock={stock} />
+        </div>
       </div>
     </section>
   );
