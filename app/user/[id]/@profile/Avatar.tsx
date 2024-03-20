@@ -18,7 +18,7 @@ const Avatar = ({ id }: { id: string }) => {
       toast.error("To update your avatar, please choose an image.");
       return;
     }
-    await fetch("http://localhost:3000/api/updateUser", {
+    await fetch(process.env.URL_API +"/updateUser", {
       method: "POST",
       body: JSON.stringify({ id: id, image: imageUrl }),
     });

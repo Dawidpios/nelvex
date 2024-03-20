@@ -20,7 +20,7 @@ type Item = {
 
 const getUserHistory = async (id: string) => {
   const result = await fetch(
-    `http://localhost:3000/api/getUserHistory?userId=${id}`,
+    process.env.URL_API +`/getUserHistory?userId=${id}`,
     { cache: "no-cache" }
   );
   const history = await result.json();

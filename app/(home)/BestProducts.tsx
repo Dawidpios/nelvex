@@ -18,7 +18,7 @@ type Product = {
 };
 
 const getBestProducts = async () => {
-  const result = await fetch("http://localhost:3000/api/getProducts", {
+  const result = await fetch(process.env.URL_API +"/getProducts", {
     method: "GET",
     cache: 'force-cache'
   });

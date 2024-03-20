@@ -8,7 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const TrashBin = ({ userID, itemID }: { userID: string; itemID: number }) => {
   const deleteItemFromCart = async () => {
-    await fetch(`http://localhost:3000/api/deleteItemFromCart`, {
+    await fetch(process.env.URL_API +`/deleteItemFromCart`, {
       method: "POST",
       body: JSON.stringify({
         userID: userID,

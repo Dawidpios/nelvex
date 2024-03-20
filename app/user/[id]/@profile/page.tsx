@@ -4,7 +4,7 @@ import Avatar from "./Avatar";
 import PasswordChange from "./PasswordChange";
 
 async function getUser(id: string) {
-  const req = await fetch('http://localhost:3000/api/getUser', { method: 'POST', body: JSON.stringify(id), next:{ tags: ['getUser'] }})
+  const req = await fetch(process.env.URL_API +'/getUser', { method: 'POST', body: JSON.stringify(id), next:{ tags: ['getUser'] }})
   
   const user = await req.json()
 

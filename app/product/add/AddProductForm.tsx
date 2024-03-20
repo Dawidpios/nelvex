@@ -59,7 +59,7 @@ const AddProductForm = () => {
       if (!success) {
         throw Error();
       }
-      await fetch("http://localhost:3000/api/addProduct", {
+      await fetch("/api/addProduct", {
         method: "POST",
         body: JSON.stringify({ ...data }),
         cache: "no-cache",
