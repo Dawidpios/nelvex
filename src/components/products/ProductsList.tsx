@@ -1,6 +1,4 @@
-import Image from "next/image";
 import styles from "./ProductList.module.scss";
-import Link from "next/link";
 import ProductCard from "./ProductCart";
 
 type Product = {
