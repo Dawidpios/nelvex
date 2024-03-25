@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./homePage.module.scss";
-import ProductCard from "@/components/products/ProductCart";
 import Button from "@/components/button/Button";
+import Carousel from "@/components/carousel/Carousel";
 
 type Product = {
   id: number;
@@ -43,13 +43,7 @@ const BestProducts = async () => {
           <Link href="/product">View all</Link>
         </Button>
       </section>
-        <ul className={styles.bestProduct_productList}>
-          {bestProducts &&
-            bestProducts.map((product: Product) => (
-              <ProductCard product={product} className="bestProductCard" />
-           ))}
-        </ul>
-
+      <Carousel children={bestProducts} autoplay={true} className="bestProductCarousel"/>
     </article>
   );
 };
