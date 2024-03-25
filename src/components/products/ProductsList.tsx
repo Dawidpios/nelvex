@@ -21,10 +21,10 @@ type Props = {
 
 const ProductsList = async ({ products }: Props) => {
   return (
-    <div className={styles.productList_container}>
+    <ul className={styles.productList_container} key={Math.random()}>
       {products &&
         products.map((product: Product) => <ProductCard product={product} />)}
-    </div>
+    </ul>
   );
 };
 

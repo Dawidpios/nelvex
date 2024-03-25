@@ -7,11 +7,12 @@
   gap: 2rem;
   flex-wrap: wrap;
   margin-top: 5rem;
+  padding: 0;
   @media (min-width: 624px) {
     gap: 3rem;
   }
-  @media (min-width: 1024px) {
-    gap: 5rem;
-  }
+  // @media (min-width: 1024px) {
+  //   gap: 3rem;
+  // }
 }
 
