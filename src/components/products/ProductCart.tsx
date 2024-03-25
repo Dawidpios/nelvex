@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./ProductCart.module.scss";
 import Button from "../button/Button";
 import { FaStar } from "react-icons/fa";
+import { TbInfoHexagon } from "react-icons/tb";
 
 type Product = {
   id: number;
@@ -22,12 +23,21 @@ const placeholder =
   "https://placehold.co/600x400/000000/FFFFFF/png?font=montserrat&text=No%20image%5CnSorry";
 
 const imageStyle = {
-  borderRadius: "2%",
+  borderRadius: "1.3rem",
 };
 
-const ProductCard = ({ product, className }: { product: Product, className?: string }) => {
+const ProductCard = ({
+  product,
+  className,
+}: {
+  product: Product;
+  className?: string;
+}) => {
   return (
-    <div className={`${styles.card} ${className && styles[className]}`} key={product.id}>
+    <div
+      key={product.id}
+      className={`${styles.card} ${className && styles[className]}`}
+    >
       <div className={styles.card_img}>
         <Image
           alt={"Product image"}
@@ -40,15 +50,23 @@ const ProductCard = ({ product, className }: { product: Product, className?: str
         ></Image>
       </div>
       <div className={styles.productInfoContainer}>
-        <h1 className={styles.header}>{product.title}</h1>
+        {product.rating ? (
+          <p className={styles.paragraph_rating}>
+            {product.rating?.rate}
+            <FaStar style={{ color: "#FFAD33" }} /> ({product.rating?.count}{" "}
+            Reviews)
+          </p>
+        ) : (
+          <p className={styles.paragraph_rating}>No rated yet</p>
+        )}
         <p className={styles.paragraph_price}>
-          Available from <span style={{color:'red'}}>{product.price}$</span>
+           <span style={{ color: "#00223C" }}>{product.price}$</span>
         </p>
-        {product.rating ? <p className={styles.paragraph_rating}>{product.rating?.rate}<FaStar style={{color: '#FFAD33'}}/> ({product.rating?.count} Reviews)</p> : <p className={styles.paragraph_rating}>No rated yet</p>}
+        <h1 className={styles.header}>{product.title}</h1>
       </div>
-        <Button className="productCartButton">
-          <Link href={`/product/${product.id}`}> Check more</Link>
-        </Button>
+      <Button className="productCartButton">
+        <Link href={`/product/${product.id}`}>Check more <TbInfoHexagon style={{fontWeight: "bold"}}/></Link>
+      </Button>
     </div>
   );
 };
