@@ -8,7 +8,8 @@ const nextConfig = {
   },
   reactStrictMode: true,
   env: {
-    FILESTACK_API: process.env.FILESTACK_API
+    FILESTACK_API: process.env.FILESTACK_API,
+    URL_API : process.env.URL_API
   },
   compiler: {
     // Enables the styled-components SWC transform

@@ -7,7 +7,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const db = await connectDB("app");
 
   if (db) {
-    const user = await User.findById(userID);
+    const user = await User.findOne({id: userID});
 
     if (user) {
       const newUserCart = user.cart.filter(
@@ -44,5 +44,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       return NextResponse.json({ id: itemID }, { status: 200 });
     }
     db.close();
+    return NextResponse.json({ message: "No deleted" }, { status: 200 });
   }
 }

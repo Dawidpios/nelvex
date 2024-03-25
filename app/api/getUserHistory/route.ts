@@ -2,6 +2,8 @@ import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "../../utilities/connectDB/connectDB";
 import { User } from "../../utilities/models/User";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest, res: NextResponse) {
   const db = await connectDB("app");
   const url = new URL(req.url);

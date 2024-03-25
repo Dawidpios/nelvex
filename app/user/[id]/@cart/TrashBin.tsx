@@ -6,15 +6,17 @@ import action from "../../../actions";
 import { useMutation } from "@tanstack/react-query";
 import CircularProgress from "@mui/material/CircularProgress";
 
+
 const TrashBin = ({ userID, itemID }: { userID: string; itemID: number }) => {
   const deleteItemFromCart = async () => {
-    await fetch(process.env.URL_API +`/deleteItemFromCart`, {
+    await fetch(`/api/deleteItemFromCart`, {
       method: "POST",
       body: JSON.stringify({
         userID: userID,
         itemID: itemID,
-      }),
+      })
     });
+    action('cart')
   };
   const { mutateAsync, isPending } = useMutation({
     mutationFn: deleteItemFromCart,
