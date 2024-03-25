@@ -5,16 +5,40 @@
   padding: 1rem;
   justify-self: center;
   @media (min-width:624px) {
-    width: 45%;
+    width: 85%;
   }
   @media (min-width:1024px) {
-    width: 35%;
+    width: 55%;
   }
   @media (min-width:1440px) {
-    width: 20%;
+    width: 40%;
   }
 }
 
+.bestProductCarousel {
+  align-self: center;
+  width: 60%;
+  @media (min-width:1024px) {
+    width: 45%;
+  }
+  .card {
+    width: 100%;
+    flex-direction: row;
+  }
+  .imageContainer {
+    width: 100% ;
+    max-width: unset;
+    @media (min-width:624px) {
+      width: 50%;
+    }
+  }
+  .cardInfoContainer {
+    width: 100%;
+    @media (min-width:624px) {
+      width: 50%;
+    }
+  }
+}
 
 .imageContainer { 
   align-self: center;
@@ -23,12 +47,18 @@
   height: 40vh;
   max-width: 250px;
   border-radius: .5rem;
+  @media (min-width:624px) {
+    width: 60%;
+  }
 }
 
 .cardInfoContainer { 
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (min-width:624px) {
+    width: 40%;
+  }
   & h1 {
     width: 90%;
     font-size: 1.3rem;

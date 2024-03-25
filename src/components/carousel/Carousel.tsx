@@ -7,6 +7,8 @@ import styles from "./Carousel.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Arrow from "./Arrow";
+import TrashBin from "../../../app/user/[id]/@cart/TrashBin";
+import { useSession } from "next-auth/react";
 
 type Child = {
   title: string;
@@ -16,23 +18,34 @@ type Child = {
   price: number;
 };
 
-const Carousel = ({ children, autoplay }: { children: Child[], autoplay?: boolean }) => {
-  console.log(children)
+const Carousel = ({
+  children,
+  autoplay,
+  className,
+  cardDirection
+}: {
+  children: Child[];
+  autoplay?: boolean;
+  className?: string;
+  cardDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+}) => {
+  const { data } = useSession();
+
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: children.length > 1,
     speed: !autoplay ? 500 : 4000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 1,
-    nextArrow: autoplay ? <></> : <Arrow direction="next" />,
-    prevArrow: autoplay ? <></> : <Arrow direction="back" />,
+    slidesToShow: children.length > 1 ? 1 : 0,
+    slidesToScroll: children.length > 1 ? 1 : 0,
+    initialSlide: children.length > 1 ? 1 : 0,
+    nextArrow: children.length > 1 && !autoplay ? <Arrow direction="next" /> : <></>,
+    prevArrow: children.length > 1 && !autoplay ? <Arrow direction="back" /> : <></>,
     autoplay: autoplay,
-    autoplaySpeed: 6000
+    autoplaySpeed: 7000,
   };
 
   return (
-    <div className={styles.sliderContainer}>
+    <div className={`${styles.sliderContainer} ${className && styles[className]}`}>
       <Slider {...settings}>
         {children.length > 0 ? (
           children.map((cart) => (
@@ -40,10 +53,10 @@ const Carousel = ({ children, autoplay }: { children: Child[], autoplay?: boolea
               <Card
                 bodyStyle={{
                   display: "flex",
-                  flexDirection: 'column',
+                  flexDirection: cardDirection && cardDirection,
                   padding: "0px",
                   width: "100%",
-                  borderRadius: "2px"
+                  borderRadius: "2px",
                 }}
               >
                 <div className={styles.imageContainer}>
@@ -68,8 +81,14 @@ const Carousel = ({ children, autoplay }: { children: Child[], autoplay?: boolea
                     </li>
                   </ul>
                   <Link href={`/product/${cart.id}`}>Check product page</Link>
+                  {!autoplay && (
+                  <TrashBin
+                    
+                    userID={data?.user.id as string}
+                    itemID={cart.id}
+                  ></TrashBin>
+                )}
                 </div>
-                {/* <TrashBin userID={params.id} itemID={cart.id}></TrashBin> */}
               </Card>
             </div>
           ))
