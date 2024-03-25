@@ -16,4 +16,7 @@
   &:hover {
     cursor: pointer;
   }
+  @media (min-width:624px) {
+    width: 30%;
+  }
 }
