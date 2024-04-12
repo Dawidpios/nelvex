@@ -153,3 +153,39 @@
     gap: 10rem;
   }
 }
+
+.footerSection {
+  width: 100%;
+  background-color: $color-darkBlue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (min-width:624px) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.footerOwnerinfo {
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.linksContainer {
+  display: flex;
+  a{
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+.gitIcon {
+  font-size: 2rem;
+  color: $color-white;
+  align-self: center;
+}
