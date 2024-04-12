@@ -12,18 +12,21 @@
   transition: .4s ease-out;
   background-color: $color-white;
   z-index: 9;
-  border-bottom: 2px solid $color-orange;
+  border-bottom: 2px solid $color-darkBlue;
 }
 
 .icon {
   padding: 0;
   overflow: hidden;
-  position:absolute;
-  top: .5rem;
+  position:fixed;
+  top: 1rem;
   right: 2rem;
   font-size: 3rem;
   transition: .4s ease-out;
-  color: $color-orange;
+  color: $color-darkBlue;
+  border: 1px solid $color-darkBlue;
+  border-radius: 50%;
+  background-color: $color-white;
   z-index: 10;
   &:hover {
     cursor: pointer;
@@ -55,7 +58,7 @@
   font-size: 1.4rem;
   padding: 1rem;
   a {
-    color: $color-orange;
+    color: $color-darkBlue;
     text-decoration: none;
   }
 }

@@ -80,7 +80,7 @@ const PasswordChangePopup = () => {
           >
             <input
               placeholder="Old password"
-              type="text"
+              type="password"
               id="oldPass"
               className={style.passwordPopup_form_input}
               {...register("oldPassword")}
@@ -92,7 +92,7 @@ const PasswordChangePopup = () => {
             )}
             <input
               placeholder="New password"
-              type="text"
+              type="password"
               id="newPassword"
               className={style.passwordPopup_form_input}
               {...register("newPassword")}

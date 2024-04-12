@@ -32,8 +32,8 @@ const Profile = async ({ params, searchParams }: { params: { id: string }, searc
         <h3 className={style.smallHeader}>User currency</h3>
         <p className={style.paragraph}>{currency ? currency : "You do not have any currency yet"}</p>
       </div>
-      <h3 className={style.smallHeader}>Control panel</h3>
       <div className={style.controlPanel}>
+        <h3 className={style.smallHeader}>Control panel</h3>
         <Avatar id={params.id}></Avatar>
         <PasswordChange />
       </div>

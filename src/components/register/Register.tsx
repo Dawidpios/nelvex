@@ -105,6 +105,7 @@ const Register = () => {
           </span>
         )}
         <input
+          type="password"
           placeholder="Password"
           className={style.form_textField}
           {...register("password")}

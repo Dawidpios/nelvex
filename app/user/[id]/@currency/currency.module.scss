@@ -1,0 +1,14 @@
+@import '../../../../src/styles/colors.scss';
+
+.header { 
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: $color-darkBlue;
+}
+
+.link {
+  text-decoration: underline;
+  color: $color-green;
+  font-size: 2rem;
+  font-weight: bold;
+}

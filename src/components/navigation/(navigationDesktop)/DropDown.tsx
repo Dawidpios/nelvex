@@ -39,7 +39,7 @@ export default function DropDown({ setUserPlayground }: Props) {
   return (
     <div>
       <Button
-        style={{color:'red', fontWeight: 'bold'}}
+        style={{color:'#00223C', fontWeight: 'bold'}}
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"

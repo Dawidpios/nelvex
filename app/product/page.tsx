@@ -1,6 +1,5 @@
 import PaginationComponent from "@/components/pagination/PaginationComponent";
 import ProductsList from "@/components/products/ProductsList";
-import SearchBar from "@/components/searchBar/SearchBar";
 export const dynamic = 'force-dynamic'
 
 type Product = {

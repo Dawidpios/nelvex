@@ -5,7 +5,7 @@
   width: 75%;
   height: fit-content;
   border: none;
-  background-color: $color-red;
+  background-color: $color-darkBlue;
   color: $color-white;
   font-weight: 700;
   padding: 0rem .5rem 0rem .5rem;
@@ -24,13 +24,16 @@
 
 .bestProduct_header_button {
   width:30%;
-  background-color: $color-red;
+  background-color: $color-darkBlue;
   padding: 1rem;
   border-radius: 0.2rem;
   border: none;
   a {
     color: $color-white;
     text-decoration: none;
+  }
+  @media (min-width: 624px) {
+    width: 10%;
   }
 }
 
@@ -47,7 +50,7 @@
     width: 50%;
     border: none;
     border-radius: .8rem;
-    background-color: $color-red;
+    background-color: $color-darkBlue;
     color: $color-white;
     font-weight: 700;
     &:hover {
@@ -61,7 +64,7 @@
 
   .navigation_button {
     width: 10%;
-    border: 1px solid $color-orange;
+    border: 1px solid $color-darkBlue;
     border-radius: 15px;
     font-weight: bold;
     font-size: 1.3rem;
@@ -113,9 +116,10 @@
 
   .addProductButton {
     width: 60%;
-    padding: 1rem;
+    padding: .5rem;
     border-radius: .5rem;
     @media (min-width:624px) {
-      width: 30%;
+      width: 100%;
+      align-self: flex-start;
     }
   }

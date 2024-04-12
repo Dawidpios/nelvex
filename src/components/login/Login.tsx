@@ -66,6 +66,7 @@ const Login = () => {
       {errors.email && <span>{errors.email?.message}</span>}
 
       <input
+      type='password'
       placeholder='Password'
       className={style.form_textField}
         {...register("password")}

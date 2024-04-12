@@ -2,6 +2,7 @@ import Logo from "./Logo";
 import { Truculenta } from "next/font/google";
 import OfferArticle from "./offerArticle";
 import BestProducts from "./BestProducts";
+import Footer from './Footer'
 import styles from './homePage.module.scss'
 import { Suspense } from "react";
 export const dynamic = 'force-dynamic'
@@ -22,7 +23,7 @@ const HomePage = async () => {
           <BestProducts />
         </Suspense>
       </main>
-      <footer></footer>
+      <Footer></Footer>
     </div>
   );
 };

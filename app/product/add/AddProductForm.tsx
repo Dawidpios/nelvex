@@ -93,31 +93,31 @@ const AddProductForm = () => {
         <label htmlFor="Category">Category</label>
         <select defaultValue={"Other"} {...register("category")}>
           <option
-            style={{ color: "red", fontWeight: "bold", textAlign: "center" }}
+            style={{ color: "#00223C", fontWeight: "bold", textAlign: "center" }}
             value="Jewelery"
           >
             Jewelery
           </option>
           <option
-            style={{ color: "red", fontWeight: "bold", textAlign: "center" }}
+            style={{ color: "#00223C", fontWeight: "bold", textAlign: "center" }}
             value="Men's clothing"
           >
             Men's clothing
           </option>
           <option
-            style={{ color: "red", fontWeight: "bold", textAlign: "center" }}
+            style={{ color: "#00223C", fontWeight: "bold", textAlign: "center" }}
             value="Women's clothing"
           >
             Women's clothing
           </option>
           <option
-            style={{ color: "red", fontWeight: "bold", textAlign: "center" }}
+            style={{ color: "#00223C", fontWeight: "bold", textAlign: "center" }}
             value="Electronics"
           >
             Electronics
           </option>
           <option
-            style={{ color: "red", fontWeight: "bold", textAlign: "center" }}
+            style={{ color: "#00223C", fontWeight: "bold", textAlign: "center" }}
             value="Other"
           >
             Other
@@ -129,7 +129,7 @@ const AddProductForm = () => {
           maxLength={200}
         />
         {errors.description && <p>{errors.description.message}</p>}
-        <AddImage setImage={setImage} text={"Set product picture"} />
+        <AddImage setImage={setImage} text={"Add picture"} />
         <Button
           disabled={isSubmitting}
           isLoading={isSubmitting}
