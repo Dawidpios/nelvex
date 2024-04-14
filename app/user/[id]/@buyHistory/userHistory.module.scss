@@ -58,10 +58,12 @@
   flex-direction: column;
   padding: 0px;
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   overflow: auto;
   list-style: none;
   align-items: center;
+  border-top:2px solid $color-darkBlue;
+  border-bottom:2px solid $color-darkBlue;
   @media (min-width:624px) {
     width: 30%;
   }
