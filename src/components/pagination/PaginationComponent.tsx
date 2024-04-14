@@ -13,7 +13,7 @@ const PaginationComponent = ({
 
   const [page, setPage] = useState(Number(searchParams.get('page') || 1));
   const router = useRouter();
-  const perPage = "5";
+  const perPage = "4";
   const length = dataLength;
 
   const handleChange = (event:any, value:number) => {

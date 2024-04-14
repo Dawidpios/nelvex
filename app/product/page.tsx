@@ -34,7 +34,7 @@ const ProductList = async ({searchParams} : {searchParams: { [key: string]: stri
   const productsResult = await getProducts()
 
   const page = searchParams['page'] ?? '1'
-  const perPage = '5'
+  const perPage = '4'
 
   const paginStart = (Number(page) - 1) * (Number(perPage))
   const end = paginStart + Number(perPage)
