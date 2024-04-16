@@ -2,7 +2,7 @@ import styles from "./cart.module.scss";
 import Link from "next/link";
 import Carousel from "@/components/carousel/Carousel";
 import { Suspense } from "react";
-import { Typography, Box, List, ListItem } from "@mui/material";
+import SecondCard from "./secondCart";
 
 type Props = {
   params: {
@@ -53,9 +53,10 @@ const Cart = async ({ params }: Props) => {
   return (
     <Suspense fallback={<div>Loading Cart...</div>}>
       <div className={styles.userCart}>
-        <ul className={styles.cardListContainer}>
-          <Carousel children={userCart}/>
-        </ul>
+          <ul className={styles.cardListContainer}>
+            {userCart.map((product : Cart) => <SecondCard {...product} userId={params.id}></SecondCard>)}
+            {/* <Carousel children={userCart}/> */}
+          </ul>
         <section className={styles.summaryContainer}>
           <h1>Cart summary</h1>
           <p>Products ordered : {userCart.length}</p>

@@ -28,7 +28,7 @@ const TrashBin = ({ userID, itemID }: { userID: string; itemID: number }) => {
   return (
     <div className={styles.cardDeleteButtonContainer}>
       {isPending ? (
-        <CircularProgress color="secondary" variant="indeterminate" />
+        <CircularProgress className={styles.deleteLoader} color="secondary" variant="indeterminate" />
       ) : (
         <FcFullTrash
           onClick={async () => await mutateAsync()}

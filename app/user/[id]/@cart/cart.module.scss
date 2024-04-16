@@ -5,16 +5,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   @media ( min-width:624px) {
     flex-direction: row;
+    width: 100%;
   }
 }
 .cardListContainer { 
-  display: flex;
-  justify-content: center;
   padding: 0;
   width:70% !important;
-  margin: 0;
+  margin-right: 2rem;
+  height: 50vh;
+  overflow: auto;
+  margin-bottom: 2rem;
+  @media (min-width: 624px) {
+    width: 50%
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+    position: absolute;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-darkBlue;
+    border-radius: 10px;
+    border: 1px none #ffffff;
+  }
 }
 
 .card {
@@ -29,8 +49,14 @@
   align-items: center;
   overflow: hidden;
   & .trash {
-    font-size: 5rem;
+    margin: 1rem;
+    font-size: 4rem;
   }
+}
+
+.deleteLoader {
+  margin: 1rem;
+  font-size: 4rem;
 }
 
 .noItemsParagraph {
@@ -43,12 +69,15 @@
 }
 
 .summaryContainer {
+  align-self: center;
   border: 2px solid $color-darkBlue;
+  border-radius: .7rem;
   width: 60%;
   display: flex;
   flex-direction: column;
   padding: 1rem;
   @media (min-width: 624px) {
+    align-self: flex-start;
     width: 20%;
   }
   & h1 {
