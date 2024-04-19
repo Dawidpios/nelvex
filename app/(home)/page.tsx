@@ -3,8 +3,10 @@ import { Truculenta } from "next/font/google";
 import OfferArticle from "./offerArticle";
 import BestProducts from "./BestProducts";
 import Footer from './Footer'
+import Loader from '../loading'
 import styles from './homePage.module.scss'
 import { Suspense } from "react";
+import ProgressBar from "./ProgressBars";
 export const dynamic = 'force-dynamic'
 
 const truculenta = Truculenta({
@@ -19,9 +21,10 @@ const HomePage = async () => {
       <Logo />
       <main className={styles.main}>
         <OfferArticle />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <BestProducts />
         </Suspense>
+        <ProgressBar />
       </main>
       <Footer></Footer>
     </div>

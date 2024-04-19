@@ -120,12 +120,15 @@
 // Best product container
 
 .bestProductContainer {
-  margin-top: 5rem;
-  width: 90%;
+  margin: 2rem;
+  width: 70%;
   height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
+  @media (min-width: 624px) {
+    margin: 5rem;
+  }
 }
 .bestProduct_header {
   display: flex;
@@ -190,4 +193,35 @@
   font-size: 2rem;
   color: $color-white;
   align-self: center;
+}
+
+// Progress bar 
+.progressContainer {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 4rem;
+  margin: 4rem 0rem 4rem 0rem;
+  padding: 2rem;
+  border: 1px solid $color-darkBlue;
+  border-radius: 1.5rem;
+  box-shadow: -2px 3px 28px 6px $color-darkBlue;
+  @media (min-width: 624px) {
+    width: 80%;
+    flex-direction: row;
+  }
+}
+
+.circleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 1.8rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
 }
